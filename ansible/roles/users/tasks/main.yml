@@ -1,0 +1,21 @@
+- name: Create the user vinishor if it does not exist
+  user:
+    name: vinishor
+    home: /home/vinishor
+    state: present
+
+- name: Set up ssh directory for vinishor
+  file:
+    path: /home/vinishor/.ssh
+    owner: vinishor
+    group: vinishor
+    state: directory
+    mode: 0700
+
+- name: Add ssh keys for allowing connections
+  template:
+   src: authorized_keys
+   dest: /home/vinishor/.ssh/authorized_keys
+   owner: vinishor
+   group: vinishor
+   mode: 0600
