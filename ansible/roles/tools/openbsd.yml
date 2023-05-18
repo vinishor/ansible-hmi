@@ -1,0 +1,7 @@
+---
+
+- name: OpenBSD | install useful tools
+  openbsd_pkg:
+    pkg: '{{ item }}'
+    state: latest
+  with_items: tools_packages

@@ -1,0 +1,8 @@
+---
+
+- name: RH | install useful tools
+  yum:
+    pkg: '{{ item }}'
+    state: latest
+    update_cache: yes
+  with_items: tools_packages

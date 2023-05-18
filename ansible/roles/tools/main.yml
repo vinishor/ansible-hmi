@@ -1,0 +1,18 @@
+---
+
+- include: debian.yml
+  when: ansible_os_family == 'Debian'
+  tags: tools
+
+- include: redhat.yml
+  when: ansible_os_family == 'RedHat'
+  tags: tools
+
+- include: openbsd.yml
+  when: ansible_os_family == 'OpenBSD'
+  tags: tools
+
+tools_packages:
+  - htop
+  - rsync
+  - neofetch
