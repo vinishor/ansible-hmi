@@ -8,7 +8,6 @@
   file:
     path: /home/vinishor/.ssh
     owner: vinishor
-    group: vinishor
     state: directory
     mode: 0700
 
@@ -17,5 +16,4 @@
    src: authorized_keys
    dest: /home/vinishor/.ssh/authorized_keys
    owner: vinishor
-   group: vinishor
    mode: 0600
