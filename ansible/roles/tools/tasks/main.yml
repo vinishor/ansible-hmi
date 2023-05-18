@@ -13,5 +13,5 @@
   tags: tools
 
 - include: opensuse.yml
-  when: ansible_os_family == 'OpenSUSE'
+  when: ansible_os_family == 'Suse'
   tags: tools
