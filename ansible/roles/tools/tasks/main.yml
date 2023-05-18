@@ -11,3 +11,7 @@
 - include: openbsd.yml
   when: ansible_os_family == 'OpenBSD'
   tags: tools
+
+- include: opensuse.yml
+  when: ansible_os_family == 'OpenSUSE'
+  tags: tools
