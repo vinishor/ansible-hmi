@@ -20,6 +20,7 @@
     regexp: "^Banner" 
     line: "Banner /etc/ssh/banner" 
     state: present
+  notify: restart ssh
 
 - name: Add a SSH banner
   template:
