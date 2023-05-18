@@ -1,4 +1,4 @@
-- name: Disable root connection
+- name: Disable root for SSH connections
   lineinfile: 
     dest: /etc/ssh/sshd_config 
     regexp: "^PermitRootLogin" 
@@ -6,10 +6,21 @@
     state: present
   notify: restart ssh
 
-- name: Disable connection with password
+- name: Disable passwords connections with SSH
   lineinfile: 
     dest: /etc/ssh/sshd_config 
     regexp: "^PasswordAuthentication" 
     line: "PasswordAuthentication no" 
     state: present
+  notify: restart ssh
+
+- name: Add a SSH banner
+  lineinfile: 
+    dest: /etc/ssh/sshd_config 
+    regexp: "^Banner" 
+    line: "Banner /etc/ssh/banner" 
+    state: present
+  template:
+   src: banner
+   dest: /etc/ssh/banner
   notify: restart ssh
