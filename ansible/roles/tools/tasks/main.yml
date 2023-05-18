@@ -11,8 +11,3 @@
 - include: openbsd.yml
   when: ansible_os_family == 'OpenBSD'
   tags: tools
-
-tools_packages:
-  - htop
-  - rsync
-  - neofetch
