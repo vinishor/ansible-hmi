@@ -14,6 +14,14 @@
     state: present
   notify: restart ssh
 
+- name: Disable passwords connections with SSH (for OpenSUSE)
+  lineinfile: 
+    dest: /etc/ssh/sshd_config 
+    regexp: "^ChallengeResponseAuthentication" 
+    line: "ChallengeResponseAuthentication no" 
+    state: present
+  notify: restart ssh
+
 - name: Enable the SSH banner
   lineinfile: 
     dest: /etc/ssh/sshd_config 
