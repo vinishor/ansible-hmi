@@ -2,7 +2,6 @@
 
 - name: Debian | install useful tools
   apt:
-    pkg: '{{ item }}'
+    pkg: '{{ tools_packages }}'
     state: latest
     update_cache: yes
-  with_items: tools_packages
