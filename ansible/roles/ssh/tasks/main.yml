@@ -14,13 +14,14 @@
     state: present
   notify: restart ssh
 
-- name: Add a SSH banner
+- name: Enable the SSH banner
   lineinfile: 
     dest: /etc/ssh/sshd_config 
     regexp: "^Banner" 
     line: "Banner /etc/ssh/banner" 
     state: present
+
+- name: Add a SSH banner
   template:
    src: banner
    dest: /etc/ssh/banner
-  notify: restart ssh
