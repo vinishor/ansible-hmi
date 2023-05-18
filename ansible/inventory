@@ -2,24 +2,24 @@ all:
     children:
         openbsd:
             hosts:
-                eliade.vinishor.xyz
-                soseki.vinishor.xyz
-                gemini.home.arpa
-                palatul.home.arpa
+                eliade.vinishor.xyz:
+                soseki.vinishor.xyz:
+                gemini.home.arpa:
+                palatul.home.arpa:
         debian:
             hosts:
-                zola.vinishor.xyz
-                tolstoi.vinishor.xyz
+                zola.vinishor.xyz:
+                tolstoi.vinishor.xyz:
         rhel:
             hosts:
-                nas.home.arpa
+                nas.home.arpa:
         opensuse:
             hosts:
-                emikoussi.home.arpa
-                narodnaia.home.arpa
-                windows.home.arpa
+                emikoussi.home.arpa:
+                narodnaia.home.arpa:
+                windows.home.arpa:
         alpine:
             hosts:
-                unbound.home.arpa
-                etherpad.home.arpa
-                data.home.arpa
+                unbound.home.arpa:
+                etherpad.home.arpa:
+                data.home.arpa:
