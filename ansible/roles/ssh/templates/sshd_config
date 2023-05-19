@@ -1,0 +1,42 @@
+## SSHD config file
+## Author : vinishor
+### This file has been edited with Ansible. Do not edit it by hand!
+
+Port 22
+ListenAddress 0.0.0.0
+ListenAddress ::
+
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
+
+# Logging
+LogLevel VERBOSE
+
+# Authentication options
+LoginGraceTime 2m
+PermitRootLogin no
+StrictModes yes
+MaxAuthTries 6
+MaxSessions 10
+
+# Enable pubkey authentication
+PubkeyAuthentication yes
+AuthorizedKeysFile	.ssh/authorized_keys
+
+# Disable tunneled clear text passwords
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+PermitEmptyPasswords no
+
+GatewayPorts yes
+X11Forwarding no
+PrintMotd yes
+PrintLastLog yes
+MaxStartups 10:30:100
+PermitTunnel yes
+
+# SSH banner
+Banner /etc/ssh/banner
+
+# override default of no subsystems
+Subsystem sftp /usr/libexec/sftp-server
