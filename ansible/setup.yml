@@ -1,0 +1,10 @@
+---
+# Playbook to set up the servers
+
+- name: Configure access and install work tools
+  hosts: all
+  become: yes
+  roles:
+    - ssh
+    - users
+    - tools
