@@ -1,4 +1,10 @@
-- name: Disable root for SSH connections
+- name: Enable SSH service
+  service:
+    name: sshd
+    enabled: yes
+    state: started
+
+- name: Disable root account for SSH connections
   lineinfile: 
     dest: /etc/ssh/sshd_config 
     regexp: "^PermitRootLogin" 
@@ -14,7 +20,7 @@
     state: present
   notify: restart ssh
 
-- name: Disable passwords connections with SSH (for OpenSUSE)
+- name: Disable passwords connections for PAM
   lineinfile: 
     dest: /etc/ssh/sshd_config 
     regexp: "^ChallengeResponseAuthentication" 
