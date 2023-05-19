@@ -13,6 +13,7 @@ all:
     rhel:
       hosts:
         nas.home.arpa:
+        ansible.home.arpa:
     opensuse:
       hosts:
         emikoussi.home.arpa:
