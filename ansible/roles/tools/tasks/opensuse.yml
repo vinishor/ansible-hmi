@@ -1,7 +1,0 @@
----
-
-- name: OpenSUSE | install useful tools
-  community.general.zypper:
-    pkg: '{{ tools_packages }}'
-    state: latest
-    update_cache: yes

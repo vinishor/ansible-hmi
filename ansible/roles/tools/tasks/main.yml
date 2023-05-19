@@ -1,17 +1,40 @@
 ---
 
-- include: debian.yml
+- name: Debian | install useful tools
+  apt:
+    pkg: '{{ tools_packages }}'
+    state: latest
+    update_cache: yes
   when: ansible_os_family == 'Debian'
-  tags: tools
+  tags: debian-tools
 
-- include: redhat.yml
+- name: RH | install EPEL repo
+  yum:
+    pkg: 'epel-release'
+    state: latest
+    update_cache: yes
   when: ansible_os_family == 'RedHat'
-  tags: tools
+  tags: rh-epel
 
-- include: openbsd.yml
+- name: RH | install useful tools
+  yum:
+    pkg: '{{ tools_packages }}'
+    state: latest
+    update_cache: yes
+  when: ansible_os_family == 'RedHat'
+  tags: rh-tools
+
+- name: OpenBSD | install useful tools
+  openbsd_pkg:
+    pkg: '{{ tools_packages }}'
+    state: latest
   when: ansible_os_family == 'OpenBSD'
-  tags: tools
+  tags: obsd-tools
 
-- include: opensuse.yml
+- name: OpenSUSE | install useful tools
+  community.general.zypper:
+    pkg: '{{ tools_packages }}'
+    state: latest
+    update_cache: yes
   when: ansible_os_family == 'Suse'
-  tags: tools
+  tags: osuse-tools
