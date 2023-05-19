@@ -5,3 +5,4 @@ tools_packages:
   - rsync
   - neofetch
   - tmux
+  - curl
