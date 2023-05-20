@@ -1,0 +1,18 @@
+---
+
+- name: Install Cockpit
+  tags: cockpit-install
+  yum:
+    pkg:
+      - cockpit
+      - cockpit-machines
+      - cockpit-bridge
+    state: latest
+    update_cache: yes
+
+- name: Enable Cockpit service
+  tags: cockpit-enable
+  service:
+    name: cockpit.socket
+    state: started
+    enable: yes
