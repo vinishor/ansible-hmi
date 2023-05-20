@@ -8,3 +8,9 @@
     - ssh
     - users
     - tools
+
+- name: Configure Cockpit for VM management
+  hosts: ansible.home.arpa
+  become: yes
+  roles:
+    - cockpit
