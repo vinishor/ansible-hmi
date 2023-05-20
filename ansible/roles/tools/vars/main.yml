@@ -8,7 +8,7 @@ tools_packages:
   - curl
   - vim
 
-tools_obsd-package:
+tools_obsd:
   - htop
   - rsync--
   - neofetch
