@@ -6,3 +6,11 @@ tools_packages:
   - neofetch
   - tmux
   - curl
+  - vim
+
+tools_obsd-package:
+  - htop
+  - rsync--
+  - neofetch
+  - curl
+  - vim--no_x11

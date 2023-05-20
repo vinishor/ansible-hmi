@@ -28,7 +28,7 @@
 
 - name: OpenBSD | install useful tools
   openbsd_pkg:
-    name: '{{ tools_packages }}'
+    name: '{{ tools_obsd-packages }}'
     state: latest
   when: ansible_os_family == 'OpenBSD'
   tags: obsd-tools
