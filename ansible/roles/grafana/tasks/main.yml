@@ -1,0 +1,10 @@
+- name: Install Grafana on OpenBSD
+  openbsd_pkg:
+    name: grafana
+    state: latest
+
+- name: Enable Grafana service
+  service:
+    name: grafana
+    enabled: yes
+    state: started
