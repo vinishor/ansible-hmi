@@ -1,0 +1,17 @@
+---
+# Playbook to set up monitoring modules
+
+- name: Install and configure the control node
+  hosts: palatul.home.arpa
+  become: yes
+  roles:
+    - grafana
+    - loki
+    #- netdata-control
+
+- name: Install and configure nodes
+  hosts: all
+  become: yes
+  roles:
+    #- netdata-node
+    - promtail
