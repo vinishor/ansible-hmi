@@ -1,0 +1,21 @@
+- name: Install Promtail on OpenBSD
+  openbsd_pkg:
+    name: loki-promtail
+    state: latest
+  when: ansible_os_family == 'OpenBSD'
+  tags: obsd-promtail-install
+
+- name: Configure Promtail
+  tags: promtail-config
+  lineinfile:
+    dest: /etc/ssh/sshd_config 
+    regexp: "^url:" 
+    line: "url: http://10.10.10.11:3100/loki/api/v1/push" 
+    state: present
+  notify: restart promtail
+
+- name: Enable Promtail service
+  service:
+    name: promtail
+    enabled: yes
+    state: started
