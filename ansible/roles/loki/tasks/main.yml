@@ -1,0 +1,10 @@
+- name: Install Loki on OpenBSD
+  openbsd_pkg:
+    name: loki
+    state: latest
+
+- name: Enable Loki service
+  service:
+    name: loki
+    enabled: yes
+    state: started
