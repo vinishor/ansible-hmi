@@ -10,6 +10,7 @@ all:
       hosts:
         zola.vinishor.xyz:
         tolstoi.vinishor.xyz:
+        smart.home.arpa:
     rhel:
       hosts:
         nas.home.arpa:
