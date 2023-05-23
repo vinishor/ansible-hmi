@@ -25,14 +25,21 @@
     state: latest
     update_cache: yes
   when: ansible_os_family == 'Debian'
-  tags: obsd-debian-install
+  tags: debian-promtail-install
 
 - name: Install Promtail on RH family OSes
   yum:
     name: promtail
     state: latest
   when: ansible_os_family == 'RedHat'
-  tags: obsd-rh-install
+  tags: rh-promtail-install
+
+- name: Install Promtail on OpenSUSE
+  community.general.zypper:
+    name: promtail
+    state: latest
+  when: ansible_os_family == 'Suse'
+  tags: suse-promtail-install
 
 - name: Configure Promtail on OpenBSD hosts
   tags: promtail-openbsd-config
