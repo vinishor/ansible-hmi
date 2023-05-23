@@ -1,0 +1,8 @@
+---
+- name: RedHat | add Promtail repository
+  template:
+    src: promtail-repo-rh.j2
+    dest: '/etc/yum.repos.d/grafana.repo'
+    owner: root
+    group: root
+    mode: 0644
