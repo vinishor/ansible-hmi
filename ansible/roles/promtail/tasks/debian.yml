@@ -1,0 +1,21 @@
+---
+
+- name: Debian | Add possibly missing tools for HTTPS repo
+  apt:
+    name: 
+      - software-properties-common
+      - apt-transport-https
+    state: latest
+
+- name: Debian | Download the GPG key for the repository
+  get_url:
+    url: https://apt.grafana.com/gpg.key
+    dest: /usr/share/keyrings/grafana.key
+
+- name: Debian | Add repository to install Promtail from
+  template:
+    src: promtail-repo-debian.j2
+    dest: '/etc/apt/sources.list.d/grafana.list'
+    owner: root
+    group: root
+    mode: 0644
