@@ -23,6 +23,7 @@
   apt:
     name: promtail
     state: latest
+    update_cache: yes
   when: ansible_os_family == 'Debian'
   tags: obsd-debian-install
 
