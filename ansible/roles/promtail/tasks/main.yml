@@ -1,3 +1,17 @@
+---
+
+# Include for Debian repos
+- include: debian.yml
+  when: ansible_os_family == 'Debian'
+  tags: promtail-repo-debian
+
+# Include for RH repos
+- include: redhat.yml
+  when: ansible_os_family == 'RedHat'
+  tags: promtail-repo-rh
+
+## Main part of the task starts from here ##
+
 - name: Install Promtail on OpenBSD
   openbsd_pkg:
     name: loki-promtail
@@ -5,14 +19,45 @@
   when: ansible_os_family == 'OpenBSD'
   tags: obsd-promtail-install
 
-- name: Configure Promtail
-  tags: promtail-config
-  lineinfile:
-    dest: /etc/ssh/sshd_config 
-    regexp: "^url:" 
-    line: "url: http://10.10.10.11:3100/loki/api/v1/push" 
-    state: present
+- name: Install Promtail on Debian
+  apt:
+    name: promtail
+    state: latest
+  when: ansible_os_family == 'Debian'
+  tags: obsd-debian-install
+
+- name: Install Promtail on RH family OSes
+  yum:
+    name: promtail
+    state: latest
+  when: ansible_os_family == 'RedHat'
+  tags: obsd-rh-install
+
+- name: Configure Promtail on OpenBSD hosts
+  tags: promtail-openbsd-config
+  template:
+    src: promtail-config.openbsd.j2
+    dest: /etc/promtail/promtail-config.yaml
   notify: restart promtail
+  when: ansible_os_family == 'OpenBSD'
+
+- name: Configure Promtail on OpenSUSE hosts
+  tags: promtail-opensuse-config
+  template:
+    src: promtail-config.linux.j2
+    dest: /etc/loki/promtail.yaml
+  notify: restart promtail
+  when: ansible_os_family == 'Suse'
+
+- name: Configure Promtail on Linux hosts (except OpenSUSE)
+  tags: promtail-linux-config
+  template:
+    src: promtail-config.linux.j2
+    dest: /etc/promtail/config.yml
+  notify: restart promtail
+  when: 
+    - ansible_os_family != 'OpenBSD'
+    - ansible_os_family != 'Suse'
 
 - name: Enable Promtail service
   service:
