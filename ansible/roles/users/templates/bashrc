@@ -1,0 +1,15 @@
+### Vinishor's bashrc
+
+## Some aliases and colors
+alias ll='ls -l'
+alias la='ls -lA'
+alias mkdir='mkdir -p'
+alias df='df -h'
+alias du='du -ch'
+
+# A nice shell input
+export PS1="\u@\H > \[$(tput sgr0)\]"
+
+# add custom dirs in PATH
+export PATH=/bin:/sbin:$PATH:/sbin:/usr/sbin:$HOME/.local/bin:$HOME/bin
+export EDITOR=vim

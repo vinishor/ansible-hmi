@@ -1,8 +1,18 @@
+- name: Set bash path for Linux hosts
+  set_fact:
+    bash_path: /bin/bash
+  when: ansible_os_family != 'OpenBSD'
+
+- name: Set bash path for OpenBSD hosts
+  set_fact:
+    bash_path: /usr/local/bin/bash
+  when: ansible_os_family == 'OpenBSD'
+
 - name: Create the user vinishor if it does not exist
   user:
     name: vinishor
     home: /home/vinishor
-    shell: bash
+    shell: '{{ bash_path }}'
     groups: wheel
     append: true
     state: present
@@ -20,3 +30,10 @@
    dest: /home/vinishor/.ssh/authorized_keys
    owner: vinishor
    mode: 0600
+
+- name: Set up bashrc file
+  template:
+   src: bashrc
+   dest: /home/vinishor/.bashrc
+   owner: vinishor
+   mode: 0644
