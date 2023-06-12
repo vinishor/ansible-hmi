@@ -1,16 +1,16 @@
 ---
 # vars file for tools
-tools_packages:
+common_packages:
   - htop
-  - rsync
   - neofetch
-  - tmux
   - curl
+  - bash
+
+linux_packages:
+  - vim
+  - rsync
   - vim
 
-tools_obsd:
-  - htop
+obsd_packages:
   - rsync--
-  - neofetch
-  - curl
   - vim--no_x11

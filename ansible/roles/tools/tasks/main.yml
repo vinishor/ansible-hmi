@@ -1,13 +1,5 @@
 ---
 
-- name: Debian | install useful tools
-  apt:
-    name: '{{ tools_packages }}'
-    state: latest
-    update_cache: yes
-  when: ansible_os_family == 'Debian'
-  tags: debian-tools
-
 - name: RH | install EPEL repo
   yum:
     name: 'epel-release'
@@ -18,25 +10,22 @@
     - ansible_facts['distribution'] != "Fedora"
   tags: rh-epel
 
-- name: RH | install useful tools
-  yum:
-    name: '{{ tools_packages }}'
+- name: Common | install shared tools
+  package:
+    name: '{{ common_packages }}'
     state: latest
-    update_cache: yes
-  when: ansible_os_family == 'RedHat'
-  tags: rh-tools
+  tags: common-tools
 
-- name: OpenBSD | install useful tools
+- name: Linux | install specific tools
+  package:
+    name: '{{ linux_packages }}'
+    state: latest
+  when: ansible_os_family != 'OpenBSD'
+  tags: debian-tools
+
+- name: OpenBSD | install specific tools
   openbsd_pkg:
-    name: '{{ tools_obsd }}'
+    name: '{{ obsd_packages }}'
     state: latest
   when: ansible_os_family == 'OpenBSD'
   tags: obsd-tools
-
-- name: OpenSUSE | install useful tools
-  community.general.zypper:
-    name: '{{ tools_packages }}'
-    state: latest
-    update_cache: yes
-  when: ansible_os_family == 'Suse'
-  tags: osuse-tools
