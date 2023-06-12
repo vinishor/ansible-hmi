@@ -5,11 +5,11 @@ common_packages:
   - neofetch
   - curl
   - bash
+  - figlet
 
 linux_packages:
   - vim
   - rsync
-  - vim
 
 obsd_packages:
   - rsync--
