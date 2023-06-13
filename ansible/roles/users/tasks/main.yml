@@ -1,15 +1,20 @@
 - name: Set bash path for Linux hosts
-  set_fact:
+  ansible.builtin.set_fact:
     bash_path: /bin/bash
   when: ansible_os_family != 'OpenBSD'
 
 - name: Set bash path for OpenBSD hosts
-  set_fact:
+  ansible.builtin.set_fact:
     bash_path: /usr/local/bin/bash
   when: ansible_os_family == 'OpenBSD'
 
-- name: Create the user vinishor if it does not exist
-  user:
+- name: Ensure group "wheel" exists
+  ansible.builtin.group:
+    name: wheel
+    state: present
+
+- name: Create the user vinishor
+  ansible.builtin.user:
     name: vinishor
     home: /home/vinishor
     shell: '{{ bash_path }}'
@@ -18,21 +23,21 @@
     state: present
 
 - name: Set up ssh directory for vinishor
-  file:
+  ansible.builtin.file:
     path: /home/vinishor/.ssh
     owner: vinishor
     state: directory
     mode: 0700
 
 - name: Add ssh keys for allowing connections
-  template:
+  ansible.builtin.template:
    src: authorized_keys
    dest: /home/vinishor/.ssh/authorized_keys
    owner: vinishor
    mode: 0600
 
-- name: Set up bashrc file
-  template:
+- name: Set up its bashrc file
+  ansible.builtin.template:
    src: bashrc
    dest: /home/vinishor/.bashrc
    owner: vinishor
