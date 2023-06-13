@@ -8,7 +8,7 @@ alias df='df -h'
 alias du='du -ch'
 
 # A nice shell input
-export PS1="\u@\H > \[$(tput sgr0)\]"
+export PS1='(\w)\n\u@\H > '
 
 # add custom dirs in PATH
 export PATH=/bin:/sbin:$PATH:/sbin:/usr/sbin:$HOME/.local/bin:$HOME/bin
