@@ -14,3 +14,4 @@ linux_packages:
 obsd_packages:
   - rsync--
   - vim--no_x11
+  - checkrestart
