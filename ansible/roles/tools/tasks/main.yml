@@ -1,7 +1,7 @@
 ---
 
 - name: RH | install EPEL repo
-  yum:
+  ansible.builtin.yum:
     name: 'epel-release'
     state: latest
     update_cache: yes
@@ -11,20 +11,20 @@
   tags: rh-epel
 
 - name: Common | install shared tools
-  package:
+  ansible.builtin.package:
     name: '{{ common_packages }}'
     state: latest
   tags: common-tools
 
 - name: Linux | install specific tools
-  package:
+  ansible.builtin.package:
     name: '{{ linux_packages }}'
     state: latest
   when: ansible_os_family != 'OpenBSD'
   tags: debian-tools
 
 - name: OpenBSD | install specific tools
-  openbsd_pkg:
+  ansible.builtin.openbsd_pkg:
     name: '{{ obsd_packages }}'
     state: latest
   when: ansible_os_family == 'OpenBSD'

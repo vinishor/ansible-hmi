@@ -1,11 +1,11 @@
 - name: Enable SSH service
-  service:
+  ansible.builtin.service:
     name: sshd
     enabled: yes
     state: started
 
 - name: Disable root account for SSH connections
-  lineinfile: 
+  ansible.builtin.lineinfile: 
     dest: /etc/ssh/sshd_config 
     regexp: "^PermitRootLogin" 
     line: "PermitRootLogin no" 
@@ -13,7 +13,7 @@
   notify: restart ssh
 
 - name: Disable passwords connections with SSH
-  lineinfile: 
+  ansible.builtin.lineinfile: 
     dest: /etc/ssh/sshd_config 
     regexp: "^PasswordAuthentication" 
     line: "PasswordAuthentication no" 
@@ -21,7 +21,7 @@
   notify: restart ssh
 
 - name: Disable passwords connections for PAM
-  lineinfile: 
+  ansible.builtin.lineinfile: 
     dest: /etc/ssh/sshd_config 
     regexp: "^ChallengeResponseAuthentication" 
     line: "ChallengeResponseAuthentication no" 
@@ -29,7 +29,7 @@
   notify: restart ssh
 
 - name: Enable the SSH banner
-  lineinfile: 
+  ansible.builtin.lineinfile: 
     dest: /etc/ssh/sshd_config 
     regexp: "^Banner" 
     line: "Banner /etc/ssh/banner" 
@@ -37,6 +37,6 @@
   notify: restart ssh
 
 - name: Add a SSH banner
-  template:
+  ansible.builtin.template:
    src: banner
    dest: /etc/ssh/banner
