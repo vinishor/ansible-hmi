@@ -36,6 +36,13 @@
    owner: vinishor
    mode: 0600
 
+- name: OpenBSD | Set up its profile file
+  ansible.builtin.template:
+   src: profile
+   dest: /home/vinishor/.profile
+   owner: vinishor
+   mode: 0644
+
 - name: Set up its bashrc file
   ansible.builtin.template:
    src: bashrc
