@@ -4,20 +4,20 @@ all:
       hosts:
         eliade.vinishor.xyz:
         soseki.vinishor.xyz:
+        hugo.vinishor.xyz:
         gemini.home.arpa:
-        palatul.home.arpa:
     debian:
       hosts:
         zola.vinishor.xyz:
         tolstoi.vinishor.xyz:
         smart.home.arpa:
+        emikoussi.home.arpa:
     rhel:
       hosts:
         nas.home.arpa:
         ansible.home.arpa:
     opensuse:
       hosts:
-        emikoussi.home.arpa:
         narodnaia.home.arpa:
         windows.home.arpa:
     alpine:
@@ -25,3 +25,6 @@ all:
         unbound.home.arpa:
         etherpad.home.arpa:
         data.home.arpa:
+        palatul.home.arpa:
+        wall.home.arpa:
+        dev.home.arpa:
