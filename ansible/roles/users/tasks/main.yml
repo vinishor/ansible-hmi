@@ -42,6 +42,7 @@
    dest: /home/vinishor/.profile
    owner: vinishor
    mode: 0644
+  when: ansible_os_family == 'OpenBSD'
 
 - name: Set up its bashrc file
   ansible.builtin.template:
