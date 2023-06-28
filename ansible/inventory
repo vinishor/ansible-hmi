@@ -12,6 +12,8 @@ all:
         tolstoi.vinishor.xyz:
         smart.home.arpa:
         emikoussi.home.arpa:
+        windows.home.arpa:
+        raoulblanchard.home.arpa:
     rhel:
       hosts:
         nas.home.arpa:
@@ -19,7 +21,6 @@ all:
     opensuse:
       hosts:
         narodnaia.home.arpa:
-        windows.home.arpa:
     alpine:
       hosts:
         unbound.home.arpa:
@@ -28,3 +29,11 @@ all:
         palatul.home.arpa:
         wall.home.arpa:
         dev.home.arpa:
+    hypervisors:
+      hosts:
+        emikoussi.home.arpa:
+        narodnaia.home.arpa:
+        raoulblanchard.home.arpa:
+    nas:
+      hosts:
+        nas.home.arpa:
