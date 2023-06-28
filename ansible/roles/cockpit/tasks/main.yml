@@ -2,13 +2,12 @@
 
 - name: Install Cockpit
   tags: cockpit-install
-  ansible.builtin.yum:
-    pkg:
+  ansible.builtin.package:
+    name:
       - cockpit
       - cockpit-machines
       - cockpit-bridge
     state: latest
-    update_cache: yes
 
 - name: Enable Cockpit service
   tags: cockpit-enable
