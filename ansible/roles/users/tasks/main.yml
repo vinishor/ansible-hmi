@@ -50,3 +50,13 @@
    dest: /home/vinishor/.bashrc
    owner: vinishor
    mode: 0644
+
+- name: Install sudoer file for wheel group
+  ansible.builtin.template:
+    src: wheel
+    dest: "/etc/sudoers.d/wheel"
+    backup: yes
+    owner: root
+    group: root
+    mode: 0640
+    validate: /usr/sbin/visudo -cf %s
