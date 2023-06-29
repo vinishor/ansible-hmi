@@ -11,7 +11,7 @@ all:
         zola.vinishor.xyz:
         tolstoi.vinishor.xyz:
         smart.home.arpa:
-        emikoussi.home.arpa:
+        #emikoussi.home.arpa:
         windows.home.arpa:
         raoulblanchard.home.arpa:
     rhel:
@@ -31,8 +31,8 @@ all:
         dev.home.arpa:
     hypervisors:
       hosts:
-        emikoussi.home.arpa:
-        narodnaia.home.arpa:
+        #emikoussi.home.arpa:
+        #narodnaia.home.arpa:
         raoulblanchard.home.arpa:
     nas:
       hosts:
