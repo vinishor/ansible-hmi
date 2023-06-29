@@ -51,7 +51,7 @@
    owner: vinishor
    mode: 0644
 
-- name: Install sudoer file for wheel group
+- name: Linux | Install sudoers file for wheel group
   ansible.builtin.template:
     src: wheel
     dest: "/etc/sudoers.d/wheel"
@@ -60,3 +60,4 @@
     group: root
     mode: 0640
     validate: /usr/sbin/visudo -cf %s
+  when: ansible_os_family != 'OpenBSD'
