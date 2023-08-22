@@ -6,17 +6,16 @@ all:
         soseki.vinishor.xyz:
         hugo.vinishor.xyz:
         gemini.home.arpa:
+        vault.home.arpa:
     debian:
       hosts:
         zola.vinishor.xyz:
         tolstoi.vinishor.xyz:
-        smart.home.arpa:
-        #emikoussi.home.arpa:
+        riscv.home.arpa:
         windows.home.arpa:
         raoulblanchard.home.arpa:
     rhel:
       hosts:
-        nas.home.arpa:
         ansible.home.arpa:
     opensuse:
       hosts:
@@ -27,12 +26,8 @@ all:
         etherpad.home.arpa:
         data.home.arpa:
         palatul.home.arpa:
-        wall.home.arpa:
-        dev.home.arpa:
     hypervisors:
       hosts:
-        #emikoussi.home.arpa:
-        #narodnaia.home.arpa:
         raoulblanchard.home.arpa:
     nas:
       hosts:
