@@ -1,0 +1,7 @@
+---
+# vars file for node-exporter role
+node-service:
+  - node_exporter
+
+node-package:
+  - node_exporter

@@ -1,0 +1,23 @@
+---
+
+- hosts: all
+  vars:
+    - names:
+        files:
+          - "{{ansible_os_family | lower }}.yml"
+  tasks:
+    - name: Load package and service names
+      include_vars: "{{ lookup('first_found', names) }}"
+
+- name: Install Node-exporter
+  tags: node-install
+  ansible.builtin.package:
+    name: '{{ node-package }}'
+    state: latest
+
+- name: Enable Node-exporter service
+  tags: node-enable
+  ansible.builtin.service:
+    name: '{{ node-service }}'
+    state: started
+    enabled: yes
