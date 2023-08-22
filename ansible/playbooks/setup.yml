@@ -11,7 +11,6 @@
 
 - name: Configure Cockpit for VM management
   hosts:
-    - ansible.home.arpa
     - hypervisors
   become: yes
   roles:

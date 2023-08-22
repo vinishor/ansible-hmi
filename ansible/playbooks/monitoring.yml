@@ -7,11 +7,11 @@
   roles:
     - grafana
     - loki
-    #- netdata-control
+    - prometheus
 
 - name: Install and configure nodes
   hosts: all
   become: yes
   roles:
-    #- netdata-node
     - promtail
+    - node-exporter
