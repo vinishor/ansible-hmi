@@ -29,7 +29,6 @@ all:
     hypervisors:
       hosts:
         raoulblanchard.home.arpa:
-        riscv.home.arpa:
     nas:
       hosts:
         nas.home.arpa:
