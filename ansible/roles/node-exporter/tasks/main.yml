@@ -1,13 +1,7 @@
 ---
 
-- hosts: all
-  vars:
-    - names:
-        files:
-          - "{{ansible_os_family | lower }}.yml"
-  tasks:
-    - name: Load package and service names
-      include_vars: "{{ lookup('first_found', names) }}"
+- name: Load package and service names
+  include_vars: "{{ lookup('first_found', names) }}"
 
 - name: Install Node-exporter
   tags: node-install
