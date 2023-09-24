@@ -1,0 +1,8 @@
+---
+# Playbook to set up the NAS
+
+- name: Configure NAS services
+  hosts: nas
+  become: yes
+  roles:
+    - nas
