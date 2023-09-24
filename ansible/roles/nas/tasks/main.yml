@@ -1,0 +1,56 @@
+---
+
+- name: Install NAS file sharing servers
+  tags: nas-services-install
+  ansible.builtin.package:
+    name:
+      - nfs-kernel-server
+      - syncthing
+      - samba
+    state: latest
+
+- name: NFS - Enable nfs service
+  tags: nfs-enable
+  ansible.builtin.service:
+    name: 'nfs-server'
+    state: started
+    enabled: yes
+
+- name: NFS - Change idmapd configuration
+  ansible.builtin.template:
+   src: idmapd
+   dest: /etc/idmapd.conf
+  notify: restart nfs
+
+- name: NFS - Change exports list
+  ansible.builtin.template:
+   src: exports
+   dest: /etc/exports
+  notify: restart nfs
+
+- name: SMB - Enable samba service
+  tags: smb-enable
+  ansible.builtin.service:
+    name: 'smbd'
+    state: started
+    enabled: yes
+
+- name: SMB - Apply configuration
+  ansible.builtin.template:
+   src: smb.conf
+   dest: /etc/samba/smb.conf
+  notify: restart smb
+
+- name: Syncthing - Create the dedicated user
+  ansible.builtin.user:
+    name: syncthing
+    home: /share/syncthing
+    shell: '/bin/bash'
+    state: present
+
+- name: Syncthing - Enable synthing service
+  tags: scth-enable
+  ansible.builtin.service:
+    name: 'syncthing@syncthing'
+    state: started
+    enabled: yes

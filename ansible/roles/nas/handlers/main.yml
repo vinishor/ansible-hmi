@@ -1,0 +1,11 @@
+## Restart NFS on changes
+- name: restart nfs
+  ansible.builtin.service:
+    name: nfs-server
+    state: restarted
+
+## Restart Samba on changes
+- name: restart smb
+  ansible.builtin.service:
+    name: smbd
+    state: restarted
