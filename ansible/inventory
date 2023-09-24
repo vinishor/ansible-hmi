@@ -14,6 +14,7 @@ all:
         riscv.home.arpa:
         windows.home.arpa:
         raoulblanchard.home.arpa:
+        nas.home.arpa:
     rhel:
       hosts:
         ansible.home.arpa:
