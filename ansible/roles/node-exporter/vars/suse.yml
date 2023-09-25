@@ -1,7 +1,6 @@
 ---
 # vars file for node-exporter role
-node-service:
-  - prometheus-node_exporter
+node_service: prometheus-node_exporter
 
-node-package:
+node_package:
   - golang-github-prometheus-node_exporter

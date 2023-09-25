@@ -1,7 +1,6 @@
 ---
 # vars file for node-exporter role
-node-service:
-  - node-exporter
+node_service: node-exporter
 
-node-package:
+node_package:
   - prometheus-node-exporter

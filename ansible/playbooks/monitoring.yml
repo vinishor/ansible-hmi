@@ -15,7 +15,3 @@
   roles:
     - promtail
     - node-exporter
-  vars:
-    - names:
-        files:
-          - "{{ansible_os_family | lower }}.yml"
