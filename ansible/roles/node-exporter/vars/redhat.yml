@@ -3,4 +3,4 @@
 node_service: prometheus-node-exporter
 
 node_package:
-  - prometheus-node-exporter
+  - golang-github-prometheus-node-exporter
