@@ -1,0 +1,6 @@
+---
+# vars file for promtail role
+promtail_service: promtail
+
+promtail_package:
+  - promtail
