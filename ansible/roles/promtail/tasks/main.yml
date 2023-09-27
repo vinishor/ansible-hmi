@@ -24,6 +24,22 @@
     name: '{{ promtail_package }}'
     state: latest
 
+- name: Ensure Promtail to have the good rights for reading logs
+  tags: promtail-group-logreading
+  ansible.builtin.group:
+    name: '{{ promtail_group }}'
+    state: present
+  ansible.builtin.user:
+    name: '{{ promtail_user }}'
+    groups: '{{ promtail_group }}'
+    append: true
+
+- name: Enable Promtail configuration
+  tags: promtail-configure
+  ansible.builtin.template:
+   src: promtail.config
+   dest: '{{ promtail_config }}'
+
 - name: Enable Promtail service
   tags: promtail-enable
   ansible.builtin.service:
