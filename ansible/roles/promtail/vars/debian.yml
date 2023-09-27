@@ -1,6 +1,6 @@
 ---
 # vars file for promtail role
-promtail_service: prometheus-node-exporter
+promtail_service: promtail
 
 promtail_package:
-  - prometheus-node-exporter
+  - promtail

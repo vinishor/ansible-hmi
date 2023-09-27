@@ -3,13 +3,20 @@
 - name: Load package and service names
   include_vars: "{{ ansible_os_family|lower }}.yml"
 
-- name: Debian - Add Grafana repo
-  name: debian-promtail-repo
+- name: Debian - Add Grafana GPG key
+  name: debian-promtail-key
   when: ansible_os_family == 'Debian'
   ansible.builtin.get_url:
     url: https://apt.grafana.com/gpg.key
     dest: /etc/apt/keyrings/grafana.asc
     mode: '0644'
+
+- name: Debian - Add Grafana repo
+  name: debian-promtail-repo
+  when: ansible_os_family == 'Debian'
+  ansible.builtin.template:
+   src: debian-repo
+   dest: /etc/apt/sources.list.d/grafana.list
 
 - name: Install Promtail
   tags: promtail-install
