@@ -1,6 +1,8 @@
 ---
 # vars file for promtail role
-promtail_service: node-exporter
-
 promtail_package:
-  - prometheus-node-exporter
+  - loki-promtail@testing
+promtail_service: loki-promtail
+promtail_user: root
+promtail_group: wheel
+promtail_config: '/etc/loki/promtail-local-config.yaml'

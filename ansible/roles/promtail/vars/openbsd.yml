@@ -1,6 +1,8 @@
 ---
 # vars file for promtail role
-promtail_service: promtail
-
 promtail_package:
   - loki-promtail
+promtail_service: promtail
+promtail_user: _loki
+promtail_group: wheel
+promtail_config: '/etc/promtail/promtail-config.yaml'

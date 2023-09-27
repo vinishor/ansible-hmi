@@ -1,6 +1,8 @@
 ---
 # vars file for promtail role
-promtail_service: promtail
-
 promtail_package:
   - promtail
+promtail_service: promtail
+promtail_user: promtail
+promtail_group: adm
+promtail_config: '/etc/promtail/config.yml'
