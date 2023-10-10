@@ -4,6 +4,11 @@
     name: nfs-server
     state: restarted
 
+## Reload NFS shares on changes
+- name: reload shares
+  ansible.builtin.command:
+    cmd: /usr/sbin/exportfs -ra
+
 ## Restart Samba on changes
 - name: restart smb
   ansible.builtin.service:
