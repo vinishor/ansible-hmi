@@ -13,7 +13,6 @@
   hosts:
     - debian
     - rhel
-    - opensuse
     - alpine
   become: yes
   roles:
