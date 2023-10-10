@@ -16,6 +16,7 @@ all:
         raoulblanchard.home.arpa:
         nas.home.arpa:
         narodnaia.home.arpa:
+        mail.home.arpa:
     rhel:
       hosts:
         ansible.home.arpa:
