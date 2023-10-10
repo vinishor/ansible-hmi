@@ -5,6 +5,9 @@
     state: started
 
 - name: Disable root account for SSH connections
+  when:
+    - inventory_hostname != 'narodnaia.home.arpa'
+    - inventory_hostname != 'raoulblanchard.home.arpa'
   ansible.builtin.lineinfile: 
     dest: /etc/ssh/sshd_config 
     regexp: "^PermitRootLogin" 
