@@ -15,21 +15,19 @@ all:
         windows.home.arpa:
         raoulblanchard.home.arpa:
         nas.home.arpa:
+        narodnaia.home.arpa:
     rhel:
       hosts:
         ansible.home.arpa:
-    opensuse:
-      hosts:
-        narodnaia.home.arpa:
     alpine:
       hosts:
         unbound.home.arpa:
-        etherpad.home.arpa:
         data.home.arpa:
         palatul.home.arpa:
     hypervisors:
       hosts:
         raoulblanchard.home.arpa:
+        narodnaia.home.arpa:
     nas:
       hosts:
         nas.home.arpa:
