@@ -61,3 +61,13 @@
     mode: 0640
     validate: /usr/sbin/visudo -cf %s
   when: ansible_os_family != 'OpenBSD'
+
+- name: Linux | Define MOTD file
+  ansible.builtin.shell:
+    cmd: figlet -t {{ inventory_hostname | quote }} > /etc/motd
+  when: ansible_os_family != 'OpenBSD'
+
+- name: OpenBSD | Define MOTD file
+  ansible.builtin.shell:
+    cmd: head -n 2 /etc/motd > /etc/motd && figlet -t {{ inventory_hostname | quote }} >> /etc/motd
+  when: ansible_os_family == 'OpenBSD'
