@@ -64,10 +64,10 @@
 
 - name: Linux | Define MOTD file
   ansible.builtin.shell:
-    cmd: figlet -t {{ inventory_hostname | quote }} > /etc/motd
+    cmd: figlet -t {{ inventory_hostname_short | quote }} > /etc/motd
   when: ansible_os_family != 'OpenBSD'
 
 - name: OpenBSD | Define MOTD file
   ansible.builtin.shell:
-    cmd: head -n 2 /etc/motd > /etc/motd && figlet -t {{ inventory_hostname | quote }} >> /etc/motd
+    cmd: head -n 2 /etc/motd > /etc/motd.new && figlet -t {{ inventory_hostname_short | quote }} >> /etc/motd.new && mv /etc/motd.new /etc/motd
   when: ansible_os_family == 'OpenBSD'
