@@ -1,0 +1,5 @@
+---
+# vars file for loki role
+loki_package:
+  - loki@testing
+loki_service: loki

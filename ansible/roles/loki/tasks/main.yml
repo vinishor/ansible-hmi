@@ -1,0 +1,22 @@
+---
+
+- name: Install Loki
+  tags: loki-install
+  ansible.builtin.package:
+    name: '{{ loki_package }}'
+    state: latest
+
+- name: Ensure Loki uses Grafana user for its service configuration
+  ansible.builtin.replace:
+    backup: true
+    path: /etc/init.d/loki
+    regexp: '(\s+)root(\s+.*)?$'
+    replace: '\1grafana\2'
+  notify: restart loki
+
+- name: Enable Loki service
+  tags: loki-enable
+  ansible.builtin.service:
+    name: '{{ loki_service }}'
+    state: started
+    enabled: yes
