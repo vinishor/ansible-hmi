@@ -1,0 +1,5 @@
+## Restart Prometheus on changes
+- name: restart prometheus
+  ansible.builtin.service:
+    name: '{{ prometheus_service }}'
+    state: restarted

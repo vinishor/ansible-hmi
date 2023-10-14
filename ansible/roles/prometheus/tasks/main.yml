@@ -1,0 +1,21 @@
+---
+
+- name: Install Prometheus
+  tags: prometheus-install
+  ansible.builtin.package:
+    name: '{{ prometheus_package }}'
+    state: latest
+
+- name: Enable Prometheus configuration
+  tags: prometheus-configure
+  ansible.builtin.template:
+   src: prometheus.config
+   dest: '{{ prometheus_config }}'
+  notify: restart prometheus
+
+- name: Enable Prometheus service
+  tags: prometheus-enable
+  ansible.builtin.service:
+    name: '{{ prometheus_service }}'
+    state: started
+    enabled: yes
