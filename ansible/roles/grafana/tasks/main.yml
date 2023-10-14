@@ -1,0 +1,14 @@
+---
+
+- name: Install Grafana
+  tags: grafana-install
+  ansible.builtin.package:
+    name: 'grafana'
+    state: latest
+
+- name: Enable Grafana service
+  tags: grafana-enable
+  ansible.builtin.service:
+    name: 'grafana'
+    state: started
+    enabled: yes
