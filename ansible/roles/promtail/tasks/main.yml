@@ -18,6 +18,12 @@
    src: debian-repo
    dest: /etc/apt/sources.list.d/grafana.list
 
+- name: Debian - Update package cache
+  tags: debian-promtail-repo-update
+  when: ansible_os_family == 'Debian'
+  ansible.builtin.apt:
+   update_cache: yes
+
 - name: Install Promtail
   tags: promtail-install
   ansible.builtin.package:
