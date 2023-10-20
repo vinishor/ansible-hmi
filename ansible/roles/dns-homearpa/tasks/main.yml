@@ -1,0 +1,52 @@
+---
+
+- name: Install packages for local resolver
+  tags: resolver-install
+  ansible.builtin.package:
+    name:
+      - nsd
+      - unbound
+    state: latest
+
+- name: NSD - Enable service
+  tags: nsd-enable
+  ansible.builtin.service:
+    name: 'nsd'
+    state: started
+    enabled: yes
+
+- name: Unbound - Enable service
+  tags: unbound-enable
+  ansible.builtin.service:
+    name: 'unbound'
+    state: started
+    enabled: yes
+
+- name: NSD - Define configuration
+  tags: nsd-configure
+  ansible.builtin.template:
+   src: nsd.conf
+   dest: /etc/nsd/nsd.conf
+   validate: /usr/sbin/nsd-checkconf %s
+   backup: yes
+  notify: restart nsd
+
+- name: Unbound - Define configuration
+  tags: unbound-configure
+  ansible.builtin.template:
+   src: unbound.conf
+   dest: /etc/unbound/unbound.conf
+   validate: /usr/sbin/unbound-checkconf
+   backup: yes
+  notify: restart unbound
+
+- name: Auto-update the git repo for home.arpa
+  tags: nsd-dns-gitupdate
+  ansible.builtin.git:
+   repo: https://git.automaticsappo.ro/AutoMario/dns-homearpa.git
+   dest: /srv/
+   version: main
+   update: yes
+  notify:
+    - restart nsd
+    - restart unbound

@@ -1,0 +1,8 @@
+---
+# Playbook to set up the local DNS resolver
+
+- name: Install and configure the local DNS resolver
+  hosts: unbound.home.arpa
+  become: yes
+  roles:
+    - dns-homearpa

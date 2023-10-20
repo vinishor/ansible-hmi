@@ -1,0 +1,11 @@
+## Reload NSD on changes
+- name: restart nsd
+  ansible.builtin.service:
+    name: nsd
+    state: restarted
+
+## Reload Unbound on changes
+- name: restart unbound
+  ansible.builtin.service:
+    name: unbound
+    state: restarted
