@@ -45,7 +45,7 @@
   tags: nsd-dns-gitupdate
   ansible.builtin.git:
    repo: https://git.automaticsappo.ro/AutoMario/dns-homearpa.git
-   dest: /srv/
+   dest: /srv/nsd/
    version: main
    update: yes
   notify:
