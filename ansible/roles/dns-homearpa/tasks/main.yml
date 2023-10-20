@@ -6,6 +6,7 @@
     name:
       - nsd
       - unbound
+      - git
     state: latest
 
 - name: NSD - Enable service
