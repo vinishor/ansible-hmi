@@ -10,10 +10,7 @@
     - prometheus
 
 - name: Install and configure nodes
-  hosts:
-    - debian
-    - rhel
-    - alpine
+  hosts: all
   become: yes
   roles:
     - promtail
