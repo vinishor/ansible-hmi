@@ -1,0 +1,30 @@
+---
+
+- name: Install packages to compile things
+  tags: compile-install-requirements
+  ansible.builtin.package:
+    name:
+      - git
+    state: latest
+
+- name: Auto-update the git repo for automario.eu
+  tags: plateforme-gitupdate
+  ansible.builtin.git:
+   repo: https://git.automaticsappo.ro/AutoMario/plateforme.git
+   dest: /srv/git/plateforme
+   version: main
+   update: yes
+
+- name: Compile the website
+  tags: compile-plateforme
+  diff: true
+  ansible.builtin.command:
+    chdir: /srv/git/plateforme
+    cmd: nanoc compile
+
+- name: Push the new modifications
+  tags: push-plateforme
+  diff: true
+  ansible.builtin.command:
+    chdir: /srv/git/plateforme/output/
+    cmd: rsync

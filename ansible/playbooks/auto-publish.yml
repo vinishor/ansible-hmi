@@ -1,0 +1,8 @@
+---
+# Playbook to auto-publish my websites
+
+- name: Auto-publish production websites
+  hosts: www.home.arpa
+  become: no
+  roles:
+    - auto-plateforme
