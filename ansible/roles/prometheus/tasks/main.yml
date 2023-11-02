@@ -9,8 +9,18 @@
 - name: Enable Prometheus configuration
   tags: prometheus-configure
   ansible.builtin.template:
-   src: prometheus.config
-   dest: '{{ prometheus_config }}'
+    src: prometheus.config
+    dest: '{{ prometheus_config }}'
+  notify: restart prometheus
+
+- name: Add rules configuration
+  tags: alertmanager-rules-configure
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "/etc/alertmanager/rules/{{ item.dest }}"
+  loop:
+    - { src: '../templates/hosts.rules.yml', dest: 'hosts.rules.yml' }
+    - { src: '../templates/prometheus.rules.yml', dest: 'prometheus.rules.yml' }
   notify: restart prometheus
 
 - name: Enable Prometheus service
