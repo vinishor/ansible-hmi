@@ -17,6 +17,7 @@ all:
         nas.home.arpa:
         narodnaia.home.arpa:
         mail.home.arpa:
+        www.home.arpa:
     rhel:
       hosts:
         ansible.home.arpa:

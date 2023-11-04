@@ -1,0 +1,20 @@
+---
+# vars file for php role for Debian hosts
+php_service: php8.2-fpm
+
+php_packages:
+  - php
+  - php-fpm
+  - php-pear
+  - php-cgi
+  - php-common
+  - php-curl
+  - php-gmp
+  - php-mbstring
+  - php-gd
+  - php-bcmath
+  - php-json
+  - php-xml
+  - php-intl
+  - php-zip
+  - php8.2-gettext

@@ -1,0 +1,17 @@
+---
+
+- name: Load package and service names
+  include_vars: "{{ ansible_os_family|lower }}.yml"
+
+- name: Install PHP packages
+  tags: php-install
+  ansible.builtin.package:
+    name: '{{ php_packages }}'
+    state: latest
+
+- name: Enable PHP-FPM service
+  tags: php-enable
+  ansible.builtin.service:
+    name: '{{ php_service }}'
+    state: started
+    enabled: yes

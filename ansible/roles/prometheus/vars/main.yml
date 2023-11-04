@@ -2,5 +2,9 @@
 # vars file for prometheus role
 prometheus_package:
   - prometheus
-prometheus_service: prometheus
+  - alertmanager
+prometheus_service:
+  - prometheus
+  - alertmanager
 prometheus_config: '/etc/prometheus/prometheus.yml'
+alertmanager_config: '/etc/alertmanager/alertmanager.yml'
