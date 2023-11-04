@@ -15,7 +15,7 @@
 
 - name: Add rules configuration
   tags: alertmanager-rules-configure
-  ansible.builtin.template:
+  ansible.builtin.copy:
     src: "{{ item.src }}"
     dest: "/etc/alertmanager/rules/{{ item.dest }}"
   loop:
