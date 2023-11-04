@@ -3,3 +3,9 @@
   ansible.builtin.service:
     name: '{{ prometheus_service }}'
     state: restarted
+
+## Restart Alertmanger on changes
+- name: restart alertmanager
+  ansible.builtin.service:
+    name: '{{ alertmanager_service }}'
+    state: restarted
