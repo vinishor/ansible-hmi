@@ -56,14 +56,14 @@ groups:
         summary: Prometheus too many restarts (instance {{ $labels.instance }})
         description: "Prometheus has restarted more than twice in the last 15 minutes. It might be crashlooping.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
-    - alert: PrometheusAlertmanagerJobMissing
-      expr: 'absent(up{job="alertmanager"})'
-      for: 0m
-      labels:
-        severity: warning
-      annotations:
-        summary: Prometheus AlertManager job missing (instance {{ $labels.instance }})
-        description: "A Prometheus AlertManager job has disappeared\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+#    - alert: PrometheusAlertmanagerJobMissing
+#      expr: 'absent(up{job="alertmanager"})'
+#      for: 0m
+#      labels:
+#        severity: warning
+#      annotations:
+#        summary: Prometheus AlertManager job missing (instance {{ $labels.instance }})
+#        description: "A Prometheus AlertManager job has disappeared\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
     - alert: PrometheusAlertmanagerConfigurationReloadFailure
       expr: 'alertmanager_config_last_reload_successful != 1'
@@ -82,15 +82,6 @@ groups:
       annotations:
         summary: Prometheus AlertManager config not synced (instance {{ $labels.instance }})
         description: "Configurations of AlertManager cluster instances are out of sync\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
-    - alert: PrometheusAlertmanagerE2eDeadManSwitch
-      expr: 'vector(1)'
-      for: 0m
-      labels:
-        severity: critical
-      annotations:
-        summary: Prometheus AlertManager E2E dead man switch (instance {{ $labels.instance }})
-        description: "Prometheus DeadManSwitch is an always-firing alert. It's used as an end-to-end test of Prometheus through the Alertmanager.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
     - alert: PrometheusNotConnectedToAlertmanager
       expr: 'prometheus_notifications_alertmanagers_discovered < 1'

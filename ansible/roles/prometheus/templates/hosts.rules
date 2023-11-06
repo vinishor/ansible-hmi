@@ -49,7 +49,7 @@ groups:
 
     - alert: HostUnusualDiskReadRate
       expr: '(sum by (instance) (rate(node_disk_read_bytes_total[2m])) / 1024 / 1024 > 50) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}'
-      for: 5m
+      for: 20m
       labels:
         severity: warning
       annotations:
@@ -58,7 +58,7 @@ groups:
 
     - alert: HostUnusualDiskWriteRate
       expr: '(sum by (instance) (rate(node_disk_written_bytes_total[2m])) / 1024 / 1024 > 50) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}'
-      for: 2m
+      for: 20m
       labels:
         severity: warning
       annotations:
@@ -112,7 +112,7 @@ groups:
 
     - alert: HostUnusualDiskReadLatency
       expr: '(rate(node_disk_read_time_seconds_total[1m]) / rate(node_disk_reads_completed_total[1m]) > 0.1 and rate(node_disk_reads_completed_total[1m]) > 0) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}'
-      for: 2m
+      for: 15m
       labels:
         severity: warning
       annotations:
@@ -121,7 +121,7 @@ groups:
 
     - alert: HostUnusualDiskWriteLatency
       expr: '(rate(node_disk_write_time_seconds_total[1m]) / rate(node_disk_writes_completed_total[1m]) > 0.1 and rate(node_disk_writes_completed_total[1m]) > 0) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}'
-      for: 2m
+      for: 15m
       labels:
         severity: warning
       annotations:
@@ -157,7 +157,7 @@ groups:
 
     - alert: HostCpuHighIowait
       expr: '(avg by (instance) (rate(node_cpu_seconds_total{mode="iowait"}[5m])) * 100 > 10) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}'
-      for: 0m
+      for: 15m
       labels:
         severity: warning
       annotations:
@@ -166,7 +166,7 @@ groups:
 
     - alert: HostUnusualDiskIo
       expr: '(rate(node_disk_io_time_seconds_total[1m]) > 0.5) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}'
-      for: 5m
+      for: 15m
       labels:
         severity: warning
       annotations:
