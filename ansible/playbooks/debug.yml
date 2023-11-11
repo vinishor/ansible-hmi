@@ -1,0 +1,11 @@
+---
+# Playbook to debug and display variables
+
+- name: Display all variables/facts known for a host
+  hosts: all
+  become: no
+  tasks:
+    - name: Display all variables/facts known for a host
+      tags: debug_info
+      debug:
+        var: hostvars[inventory_hostname]
