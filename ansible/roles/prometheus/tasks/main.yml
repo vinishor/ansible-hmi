@@ -6,25 +6,26 @@
     name: '{{ prometheus_package }}'
     state: latest
 
-- name: Enable Prometheus configuration
-  tags: prometheus-configure
-  ansible.builtin.template:
-    src: prometheus.config
-    dest: '{{ prometheus_config }}'
-    validate: /usr/bin/promtool check config %s
-  notify: restart prometheus
-
-- name: Add rules configuration
-  tags: alertmanager-rules-configure
+- name: Add rules configuration - Main
+  tags: alertmanager-rules-main-configure
   ansible.builtin.copy:
     src: "{{ item.src }}"
     dest: "/etc/alertmanager/rules/{{ item.dest }}"
   loop:
     - { src: '../templates/hosts.rules', dest: 'hosts.rules.yml' }
     - { src: '../templates/prometheus.rules', dest: 'prometheus.rules.yml' }
+    - { src: '../templates/blackbox.rules', dest: 'blackbox.rules.yml' }
   notify:
     - restart prometheus
     - restart alertmanager
+
+- name: Enable Prometheus configuration
+  tags: prometheus-configure
+  ansible.builtin.template:
+    src: prometheus.config.j2
+    dest: '{{ prometheus_config }}'
+    validate: /usr/bin/promtool check config %s
+  notify: restart prometheus
 
 - name: Enable Prometheus service
   tags: prometheus-enable
