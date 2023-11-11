@@ -14,7 +14,11 @@ alerting:
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
    - "/etc/alertmanager/rules/prometheus.rules.yml"
+{% if blackbox -%}
+   - "/etc/alertmanager/rules/blackbox.rules.yml"
+{% else -%}
    - "/etc/alertmanager/rules/hosts.rules.yml"
+{% endif %}
 
 # A scrape configuration containing exactly one endpoint to scrape:
 
@@ -23,6 +27,29 @@ scrape_configs:
     static_configs:
       - targets: ["localhost:9090"]
 
+{% if blackbox -%}
+  - job_name: "blackbox"
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    scrape_interval: 5s
+    static_configs:
+      - targets:
+          - https://automario.eu
+          - https://mail.automario.eu
+          - https://mail2.automario.eu
+          - https://unbon.cafe
+          - https://blog.vinishor.xyz
+          - https://automaticsappo.ro
+          - https://kuma.am.gugod.fr
+    relabel_configs:
+       - source_labels: [__address__]
+         target_label: __param_target
+       - source_labels: [__param_target]
+         target_label: target
+       - target_label: __address__
+         replacement: 127.0.0.1:9115  # The blackbox exporter's real hostname:port.
+{% else -%}
   - job_name: "openbsd-nodes"
     static_configs:
       - targets:
@@ -70,8 +97,6 @@ scrape_configs:
     metrics_path: /pve
     params:
       module: [default]
-#      cluster: 1
-#      node: 1
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -85,3 +110,4 @@ scrape_configs:
       - targets:
          - www.home.arpa:9113
          - zola.home.arpa:9113
+{% endif %}
