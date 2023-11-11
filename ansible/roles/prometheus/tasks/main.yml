@@ -26,6 +26,8 @@
     dest: '{{ prometheus_config }}'
     validate: /usr/bin/promtool check config %s
   notify: restart prometheus
+  with_items:
+    - blackbox: "{{ ansible_facts['blackbox'] }}"
 
 - name: Enable Prometheus service
   tags: prometheus-enable
