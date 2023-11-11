@@ -14,7 +14,7 @@ alerting:
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
    - "/etc/alertmanager/rules/prometheus.rules.yml"
-{% if blackbox -%}
+{% if ansible_facts['blackbox'] -%}
    - "/etc/alertmanager/rules/blackbox.rules.yml"
 {% else -%}
    - "/etc/alertmanager/rules/hosts.rules.yml"
