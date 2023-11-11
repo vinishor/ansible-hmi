@@ -7,6 +7,11 @@
   roles:
     - grafana
     - loki
+
+- name: Install and configure Prometheus nodes
+  hosts: monitoring
+  become: yes
+  roles:
     - prometheus
 
 - name: Install and configure nodes

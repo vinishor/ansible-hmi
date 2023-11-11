@@ -1,5 +1,11 @@
 all:
   children:
+    monitoring:
+      hosts:
+        palatul.home.arpa:
+          blackbox: false
+        soseki.vinishor.xyz:
+          blackbox: true
     openbsd:
       hosts:
         eliade.vinishor.xyz:
