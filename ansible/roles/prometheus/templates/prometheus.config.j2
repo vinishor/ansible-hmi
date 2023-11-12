@@ -22,7 +22,7 @@ rule_files:
 # A scrape configuration containing exactly one endpoint to scrape:
 
 scrape_config_files:
-{% for item in scrape_configs %}
+{% for item in scrape_files %}
   - "{{ item }}"
 {% endfor %}
 

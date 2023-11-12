@@ -14,7 +14,7 @@
   roles:
     - prometheus
   vars:
-    scrape_configs:
+    scrape_files:
       - /etc/prometheus/scrape-main.yml
 
 - name: Install and configure Prometheus node - Blackbox
@@ -23,7 +23,7 @@
   roles:
     - prometheus
   vars:
-    scrape_configs:
+    scrape_files:
       - /etc/prometheus/scrape-blackbox.yml
 
 - name: Install and configure nodes
