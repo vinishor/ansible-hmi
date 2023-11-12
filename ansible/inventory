@@ -1,11 +1,5 @@
 all:
   children:
-    monitoring:
-      hosts:
-        palatul.home.arpa:
-          blackbox: false
-        soseki.vinishor.xyz:
-          blackbox: true
     openbsd:
       hosts:
         eliade.vinishor.xyz:
@@ -24,6 +18,7 @@ all:
         narodnaia.home.arpa:
         mail.home.arpa:
         www.home.arpa:
+        motion.home.arpa:
     rhel:
       hosts:
         ansible.home.arpa:
