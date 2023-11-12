@@ -6,8 +6,19 @@
     name: '{{ prometheus_package }}'
     state: latest
 
-- name: Add rules configuration - Main
-  tags: alertmanager-rules-main-configure
+- name: Add scrape configuration
+  tags: prometheus-scrape-configure
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "/etc/prometheus/{{ item.dest }}"
+  loop:
+    - { src: '../templates/scrape-main.yml', dest: 'scrape-main.yml' }
+    - { src: '../templates/scrape-blackbox.yml', dest: 'scrape-blackbox.yml' }
+  notify:
+    - restart prometheus
+
+- name: Add rules configuration
+  tags: alertmanager-rules-configure
   ansible.builtin.copy:
     src: "{{ item.src }}"
     dest: "/etc/alertmanager/rules/{{ item.dest }}"
@@ -26,8 +37,6 @@
     dest: '{{ prometheus_config }}'
     validate: /usr/bin/promtool check config %s
   notify: restart prometheus
-  with_items:
-    - blackbox: "{{ ansible_facts['blackbox'] }}"
 
 - name: Enable Prometheus service
   tags: prometheus-enable

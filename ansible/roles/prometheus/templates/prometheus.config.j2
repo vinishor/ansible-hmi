@@ -1,3 +1,5 @@
+{{ ansible_managed | comment }}
+
 # Global configuration
 global:
   scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
@@ -14,100 +16,17 @@ alerting:
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
    - "/etc/alertmanager/rules/prometheus.rules.yml"
-{% if blackbox -%}
    - "/etc/alertmanager/rules/blackbox.rules.yml"
-{% else -%}
    - "/etc/alertmanager/rules/hosts.rules.yml"
-{% endif %}
 
 # A scrape configuration containing exactly one endpoint to scrape:
+
+scrape_config_files:
+{% for item in scrape_configs %}
+  - "{{ item }}"
+{% endfor %}
 
 scrape_configs:
   - job_name: "prometheus"
     static_configs:
       - targets: ["localhost:9090"]
-
-{% if blackbox -%}
-  - job_name: "blackbox"
-    metrics_path: /probe
-    params:
-      module: [http_2xx]
-    scrape_interval: 5s
-    static_configs:
-      - targets:
-          - https://automario.eu
-          - https://mail.automario.eu
-          - https://mail2.automario.eu
-          - https://unbon.cafe
-          - https://blog.vinishor.xyz
-          - https://automaticsappo.ro
-          - https://kuma.am.gugod.fr
-    relabel_configs:
-       - source_labels: [__address__]
-         target_label: __param_target
-       - source_labels: [__param_target]
-         target_label: target
-       - target_label: __address__
-         replacement: 127.0.0.1:9115  # The blackbox exporter's real hostname:port.
-{% else -%}
-  - job_name: "openbsd-nodes"
-    static_configs:
-      - targets:
-        - soseki.home.arpa:9100
-        - hugo.home.arpa:9100
-        - eliade.home.arpa:9100
-        - gemini.home.arpa:9100
-        - vault.home.arpa:9100
-
-  - job_name: "linux-nodes"
-    static_configs:
-      - targets:
-         - palatul.home.arpa:9100
-         - unbound.home.arpa:9100
-         - gitea.home.arpa:9100
-         - www.home.arpa:9100
-         - data.home.arpa:9100
-         - ansible.home.arpa:9100
-         - zola.home.arpa:9100
-         - narodnaia.home.arpa:9100
-         - nas.home.arpa:9100
-         - raoulblanchard.home.arpa:9100
-
-  - job_name: "mikrotik"
-    static_configs:
-      - targets:
-        - 10.10.99.1
-        - 10.10.99.2
-    metrics_path: /snmp
-    params:
-      module: [mikrotik]
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - target_label: __address__
-        replacement: localhost:9116  # The SNMP exporter's real hostname:port.
-
-  - job_name: "pve-exporter"
-    static_configs:
-      - targets:
-         - narodnaia.home.arpa
-         - raoulblanchard.home.arpa
-    metrics_path: /pve
-    params:
-      module: [default]
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - target_label: __address__
-        replacement: 127.0.0.1:9221  # PVE exporter.
-
-  - job_name: "nginx-exporter"
-    static_configs:
-      - targets:
-         - www.home.arpa:9113
-         - zola.home.arpa:9113
-{% endif %}
