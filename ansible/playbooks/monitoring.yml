@@ -19,7 +19,7 @@
       - /etc/prometheus/scrape-main.yml
 
 - name: Install and configure Prometheus node - Blackbox
-  hosts: soseki.home.arpa
+  hosts: soseki.vinishor.xyz
   become: yes
   roles:
     - prometheus
