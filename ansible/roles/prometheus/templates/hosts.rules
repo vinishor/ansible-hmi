@@ -9,6 +9,7 @@ groups:
         severity: warning
       annotations:
         summary: Host out of memory (instance {{ $labels.instance }})
+        message:  Host out of memory (node {{ $labels.nodename }})
         description: "Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
     - alert: HostMemoryUnderMemoryPressure
@@ -18,6 +19,7 @@ groups:
         severity: warning
       annotations:
         summary: Host memory under memory pressure (instance {{ $labels.instance }})
+        message: Host memory under memory pressure (node {{ $labels.nodename }})
         description: "The node is under heavy memory pressure. High rate of major page faults\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
     - alert: HostMemoryIsUnderutilized
@@ -27,6 +29,7 @@ groups:
         severity: info
       annotations:
         summary: Host Memory is underutilized (instance {{ $labels.instance }})
+        message: Host Memory is underutilized (node {{ $labels.nodename }})
         description: "Node memory is < 20% for 1 week. Consider reducing memory space. (instance {{ $labels.instance }})\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
     - alert: HostUnusualNetworkThroughputIn
@@ -36,6 +39,7 @@ groups:
         severity: warning
       annotations:
         summary: Host unusual network throughput in (instance {{ $labels.instance }})
+        message: Host unusual network throughput in (node {{ $labels.nodename }})
         description: "Host network interfaces are probably receiving too much data (> 100 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
     - alert: HostUnusualNetworkThroughputOut
@@ -45,6 +49,7 @@ groups:
         severity: warning
       annotations:
         summary: Host unusual network throughput out (instance {{ $labels.instance }})
+        message: Host unusual network throughput out (node {{ $labels.nodename }})
         description: "Host network interfaces are probably sending too much data (> 100 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
     - alert: HostUnusualDiskReadRate
@@ -54,6 +59,7 @@ groups:
         severity: warning
       annotations:
         summary: Host unusual disk read rate (instance {{ $labels.instance }})
+        message: Host unusual disk read rate (node {{ $labels.nodename }})
         description: "Disk is probably reading too much data (> 50 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
     - alert: HostUnusualDiskWriteRate
@@ -63,6 +69,7 @@ groups:
         severity: warning
       annotations:
         summary: Host unusual disk write rate (instance {{ $labels.instance }})
+        message: Host unusual disk write rate (node {{ $labels.nodename }})
         description: "Disk is probably writing too much data (> 50 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
     - alert: HostOutOfDiskSpace
@@ -72,6 +79,7 @@ groups:
         severity: warning
       annotations:
         summary: Host out of disk space (instance {{ $labels.instance }})
+        message: Host out of disk space (node {{ $labels.nodename }})
         description: "Disk is almost full (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
     - alert: HostDiskWillFillIn24Hours
@@ -81,6 +89,7 @@ groups:
         severity: warning
       annotations:
         summary: Host disk will fill in 24 hours (instance {{ $labels.instance }})
+        message: Host disk will fill in 24 hours (node {{ $labels.nodename }})
         description: "Filesystem is predicted to run out of space within the next 24 hours at current write rate\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
     - alert: HostOutOfInodes
@@ -90,6 +99,7 @@ groups:
         severity: warning
       annotations:
         summary: Host out of inodes (instance {{ $labels.instance }})
+        message: Host out of inodes (node {{ $labels.nodename }})
         description: "Disk is almost running out of available inodes (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
     - alert: HostFilesystemDeviceError
@@ -99,6 +109,7 @@ groups:
         severity: critical
       annotations:
         summary: Host filesystem device error (instance {{ $labels.instance }})
+        message: Host filesystem device error (node {{ $labels.nodename }})
         description: "{{ $labels.instance }}: Device error with the {{ $labels.mountpoint }} filesystem\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
     - alert: HostInodesWillFillIn24Hours
@@ -136,15 +147,6 @@ groups:
       annotations:
         summary: Host high CPU load (instance {{ $labels.instance }})
         description: "CPU load is > 80%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
-    - alert: HostCpuIsUnderutilized
-      expr: '(100 - (rate(node_cpu_seconds_total{mode="idle"}[30m]) * 100) < 20) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}'
-      for: 1w
-      labels:
-        severity: info
-      annotations:
-        summary: Host CPU is underutilized (instance {{ $labels.instance }})
-        description: "CPU load is < 20% for 1 week. Consider reducing the number of CPUs.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
     - alert: HostCpuStealNoisyNeighbor
       expr: '(avg by(instance) (rate(node_cpu_seconds_total{mode="steal"}[5m])) * 100 > 10) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}'
