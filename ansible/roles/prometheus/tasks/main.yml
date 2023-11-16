@@ -1,5 +1,8 @@
 ---
 
+- name: Load variables
+  include_vars: "{{ ansible_os_family|lower }}.yml"
+
 - name: Install Prometheus
   tags: prometheus-install
   ansible.builtin.package:
