@@ -6,4 +6,5 @@ prometheus_package:
 prometheus_service: prometheus
 alertmanager_service: prometheus-alertmanager
 prometheus_config: '/etc/prometheus/prometheus.yml'
-alertmanager_config: '/etc/alertmanager/alertmanager.yml'
+alertmanager_config: '/etc/prometheus/alertmanager.yml'
+alertmanager_rules: '/etc/prometheus/rules'
