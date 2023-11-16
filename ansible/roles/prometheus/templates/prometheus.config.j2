@@ -120,6 +120,12 @@ scrape_configs:
       - targets:
          - unbound.home.arpa:9167
     metrics_path: /metrics
+
+  - job_name: "dnsbl-exporter"
+    static_configs:
+      - targets:
+         - palatul.home.arpa:9211
+    metrics_path: /metrics
 {% endif %}
 
 {% if inventory_hostname == 'zola.vinishor.xyz' %}
