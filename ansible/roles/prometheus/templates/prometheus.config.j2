@@ -121,3 +121,11 @@ scrape_configs:
          - unbound.home.arpa:9167
     metrics_path: /metrics
 {% endif %}
+
+{% if inventory_hostname == 'zola.vinishor.xyz' %}
+  - job_name: "prosody-exporter"
+    static_configs:
+      - targets:
+         - 127.0.0.1:5280
+    metrics_path: /metrics
+{% endif %}
