@@ -15,9 +15,9 @@ alerting:
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
-   - "/etc/alertmanager/rules/prometheus.rules.yml"
-   - "/etc/alertmanager/rules/blackbox.rules.yml"
-   - "/etc/alertmanager/rules/hosts.rules.yml"
+   - "{{ alertmanager_rules }}/prometheus.rules.yml"
+   - "{{ alertmanager_rules }}/blackbox.rules.yml"
+   - "{{ alertmanager_rules }}/hosts.rules.yml"
 
 # A scrape configuration containing exactly one endpoint to scrape:
 
