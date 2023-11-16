@@ -8,7 +8,7 @@
     - grafana
     - loki
 
-- name: Install and configure Prometheus node - Main
+- name: Install and configure Prometheus node - Main node
   hosts: palatul.home.arpa
   become: yes
   roles:
@@ -18,8 +18,8 @@
     scrape_files:
       - /etc/prometheus/scrape-main.yml
 
-- name: Install and configure Prometheus node - Blackbox
-  hosts: soseki.vinishor.xyz
+- name: Install and configure Prometheus node - Blackbox nodes
+  hosts: blackbox
   become: yes
   roles:
     - prometheus

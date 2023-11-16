@@ -27,6 +27,10 @@ all:
         unbound.home.arpa:
         data.home.arpa:
         palatul.home.arpa:
+    blackbox:
+      hosts:
+        soseki.vinishor.xyz:
+        zola.vinishor.xyz:
     hypervisors:
       hosts:
         raoulblanchard.home.arpa:
