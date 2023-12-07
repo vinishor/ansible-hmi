@@ -1,6 +1,6 @@
 ---
 
-- name: RH | install EPEL repo
+- name: Fedora | install EPEL repo
   ansible.builtin.yum:
     name: 'epel-release'
     state: latest
@@ -10,25 +10,11 @@
     - ansible_facts['distribution'] != "Fedora"
   tags: rh-epel
 
-- name: Common | install shared tools
+- name: Tools | install common packages for servers
   ansible.builtin.package:
     name: '{{ common_packages }}'
     state: latest
   tags: common-tools
-
-- name: Linux | install specific tools
-  ansible.builtin.package:
-    name: '{{ linux_packages }}'
-    state: latest
-  when: ansible_os_family != 'OpenBSD'
-  tags: debian-tools
-
-- name: OpenBSD | install specific tools
-  ansible.builtin.openbsd_pkg:
-    name: '{{ obsd_packages }}'
-    state: latest
-  when: ansible_os_family == 'OpenBSD'
-  tags: obsd-tools
 
 - name: Tools | configure vi on OpenBSD hosts
   ansible.builtin.template:

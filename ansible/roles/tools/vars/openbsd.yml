@@ -1,0 +1,12 @@
+---
+# vars file for tools role
+common_packages:
+  - htop
+  - neofetch
+  - curl
+  - bash
+  - figlet
+  - rsync--
+  - vim--no_x11
+  - checkrestart
+  - lynis
