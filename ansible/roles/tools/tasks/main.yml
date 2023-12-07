@@ -30,13 +30,6 @@
   when: ansible_os_family == 'OpenBSD'
   tags: obsd-tools
 
-- name: Tools | configure doas on OpenBSD hosts
-  ansible.builtin.template:
-   src: doas.conf
-   dest: /etc/doas.conf
-  when: ansible_os_family == 'OpenBSD'
-  tags: obsd-doas
-
 - name: Tools | configure vi on OpenBSD hosts
   ansible.builtin.template:
    src: vi.exrc

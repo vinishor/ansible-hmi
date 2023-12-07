@@ -44,7 +44,7 @@
    mode: 0644
   when: ansible_os_family == 'OpenBSD'
 
-- name: Set up its bashrc file
+- name: All hosts | Set up its bashrc file
   ansible.builtin.template:
    src: bashrc
    dest: /home/vinishor/.bashrc
@@ -61,6 +61,13 @@
     mode: 0640
     validate: /usr/sbin/visudo -cf %s
   when: ansible_os_family != 'OpenBSD'
+
+- name: Openbsd | Configure doas
+  ansible.builtin.template:
+   src: doas.conf
+   dest: /etc/doas.conf
+  when: ansible_os_family == 'OpenBSD'
+  tags: obsd-doas
 
 - name: Linux | Define MOTD file
   ansible.builtin.shell:
