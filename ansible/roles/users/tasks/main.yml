@@ -65,11 +65,9 @@
 - name: Linux | Correct sudoers file for ansible user
   ansible.builtin.file:
     path: "/etc/sudoers.d/ansible"
-    backup: yes
     owner: root
     group: root
     mode: 0640
-    validate: /usr/sbin/visudo -cf %s
   when: ansible_os_family != 'OpenBSD'
 
 - name: Openbsd | Configure doas
