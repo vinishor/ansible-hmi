@@ -10,3 +10,4 @@ common_packages:
   - rsync
   - needrestart
   - lynis
+  - apt-listbugs
