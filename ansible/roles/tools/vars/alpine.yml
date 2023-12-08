@@ -8,4 +8,4 @@ common_packages:
   - figlet
   - vim
   - rsync
-  - lynis@edge
+  - lynis@testing
