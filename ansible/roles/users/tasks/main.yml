@@ -1,19 +1,19 @@
-- name: Set bash path for Linux hosts
+- name: Linux | Set bash path for Linux hosts
   ansible.builtin.set_fact:
     bash_path: /bin/bash
   when: ansible_os_family != 'OpenBSD'
 
-- name: Set bash path for OpenBSD hosts
+- name: OpenBSD | Set bash path for OpenBSD hosts
   ansible.builtin.set_fact:
     bash_path: /usr/local/bin/bash
   when: ansible_os_family == 'OpenBSD'
 
-- name: Ensure group "wheel" exists
+- name: All hosts | Ensure group "wheel" exists
   ansible.builtin.group:
     name: wheel
     state: present
 
-- name: Create the user vinishor
+- name: All hosts | Create the user vinishor
   ansible.builtin.user:
     name: vinishor
     home: /home/vinishor
@@ -22,14 +22,21 @@
     append: true
     state: present
 
-- name: Set up ssh directory for vinishor
+- name: All hosts | Set up home directory permissions for vinishor
+  ansible.builtin.file:
+    path: /home/vinishor
+    owner: vinishor
+    state: directory
+    mode: 0700
+
+- name: All hosts | Set up ssh directory for vinishor
   ansible.builtin.file:
     path: /home/vinishor/.ssh
     owner: vinishor
     state: directory
     mode: 0700
 
-- name: Add ssh keys for allowing connections
+- name: All hosts | Add ssh keys for allowing connections
   ansible.builtin.template:
    src: authorized_keys
    dest: /home/vinishor/.ssh/authorized_keys
@@ -41,7 +48,7 @@
    src: profile
    dest: /home/vinishor/.profile
    owner: vinishor
-   mode: 0644
+   mode: 0640
   when: ansible_os_family == 'OpenBSD'
 
 - name: All hosts | Set up its bashrc file
@@ -49,7 +56,7 @@
    src: bashrc
    dest: /home/vinishor/.bashrc
    owner: vinishor
-   mode: 0644
+   mode: 0640
 
 - name: Linux | Install sudoers file for wheel group
   ansible.builtin.template:
@@ -62,7 +69,7 @@
     validate: /usr/sbin/visudo -cf %s
   when: ansible_os_family != 'OpenBSD'
 
-- name: Linux | Correct sudoers file for ansible user
+- name: Linux | Correct sudoers file permissions for ansible user
   ansible.builtin.file:
     path: "/etc/sudoers.d/ansible"
     owner: root
