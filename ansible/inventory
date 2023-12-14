@@ -14,6 +14,7 @@ all:
         riscv.home.arpa:
         windows.home.arpa:
         raoulblanchard.home.arpa:
+        emikoussi.home.arpa:
         nas.home.arpa:
         narodnaia.home.arpa:
         mail.home.arpa:
@@ -35,6 +36,7 @@ all:
       hosts:
         raoulblanchard.home.arpa:
         narodnaia.home.arpa:
+        emikoussi.home.arpa:
     nas:
       hosts:
         nas.home.arpa:
