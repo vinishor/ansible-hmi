@@ -8,6 +8,7 @@
   when:
     - inventory_hostname != 'narodnaia.home.arpa'
     - inventory_hostname != 'raoulblanchard.home.arpa'
+    - inventory_hostname != 'emikoussi.home.arpa'
   ansible.builtin.lineinfile: 
     dest: /etc/ssh/sshd_config 
     regexp: "^PermitRootLogin" 
