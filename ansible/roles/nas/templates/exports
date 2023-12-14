@@ -1,5 +1,5 @@
 ## NFS exports configuration
 
 /share/nfs/nextcloud/data 10.10.10.14/32(rw,sync,no_root_squash,no_subtree_check)
-/share/nfs/vms 10.10.10.3/32(rw,sync,no_root_squash) 10.10.10.6/32(rw,sync,no_root_squash,no_subtree_check)
+/share/nfs/vms 10.10.10.3/32(rw,sync,no_root_squash) 10.10.10.6/32(rw,sync,no_root_squash,no_subtree_check) 10.10.10.5/32(rw,sync,no_root_squash,no_subtree_check)
 /share/movies 10.10.20.0/24(rw,sync,no_root_squash,no_subtree_check)
