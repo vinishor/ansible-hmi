@@ -8,5 +8,4 @@ common_packages:
   - figlet
   - vim
   - rsync
-  - needrestart
   - lynis
