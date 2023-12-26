@@ -23,6 +23,8 @@ all:
     rhel:
       hosts:
         ansible.home.arpa:
+        eminescu.vinishor.xyz:
+        under.vinishor.xyz:
     alpine:
       hosts:
         unbound.home.arpa:
