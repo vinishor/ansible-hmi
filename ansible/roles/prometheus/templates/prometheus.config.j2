@@ -43,6 +43,8 @@ scrape_configs:
           - https://mail.automario.eu
           - https://mail2.automario.eu
           - https://unbon.cafe
+          - https://avoir.unbon.cafe
+          - https://vinishor.xyz
           - https://blog.vinishor.xyz
           - https://automaticsappo.ro
           - https://kuma.am.gugod.fr
@@ -76,6 +78,7 @@ scrape_configs:
          - narodnaia.home.arpa:9100
          - nas.home.arpa:9100
          - emikoussi.home.arpa:9100
+         - altai.home.arpa:9100
 
   - job_name: "mikrotik"
     static_configs:
@@ -98,6 +101,7 @@ scrape_configs:
       - targets:
          - narodnaia.home.arpa
          - emikoussi.home.arpa
+         - altai.home.arpa
     metrics_path: /pve
     params:
       module: [default]

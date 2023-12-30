@@ -20,6 +20,7 @@
          - narodnaia.home.arpa:9100
          - nas.home.arpa:9100
          - emikoussi.home.arpa:9100
+         - altai.home.arpa:9100
 
   - job_name: "mikrotik"
     static_configs:
@@ -42,6 +43,7 @@
       - targets:
          - narodnaia.home.arpa
          - emikoussi.home.arpa
+         - altai.home.arpa
     metrics_path: /pve
     params:
       module: [default]

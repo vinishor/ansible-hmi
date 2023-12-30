@@ -13,7 +13,7 @@ all:
         tolstoi.vinishor.xyz:
         riscv.home.arpa:
         windows.home.arpa:
-        raoulblanchard.home.arpa:
+        altai.home.arpa:
         emikoussi.home.arpa:
         nas.home.arpa:
         narodnaia.home.arpa:
@@ -36,7 +36,7 @@ all:
         zola.vinishor.xyz:
     hypervisors:
       hosts:
-        raoulblanchard.home.arpa:
+        altai.home.arpa:
         narodnaia.home.arpa:
         emikoussi.home.arpa:
     nas:

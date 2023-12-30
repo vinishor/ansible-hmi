@@ -7,7 +7,7 @@
 - name: Disable root account for SSH connections
   when:
     - inventory_hostname != 'narodnaia.home.arpa'
-    - inventory_hostname != 'raoulblanchard.home.arpa'
+    - inventory_hostname != 'altai.home.arpa'
     - inventory_hostname != 'emikoussi.home.arpa'
   ansible.builtin.lineinfile: 
     dest: /etc/ssh/sshd_config 
