@@ -20,7 +20,6 @@ all:
         mail.home.arpa:
         www.home.arpa:
         motion.home.arpa:
-        10.10.20.50:
     rhel:
       hosts:
         ansible.home.arpa:
