@@ -20,6 +20,7 @@ all:
         mail.home.arpa:
         www.home.arpa:
         motion.home.arpa:
+        kube.home.arpa:
     rhel:
       hosts:
         ansible.home.arpa:
