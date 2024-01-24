@@ -7,6 +7,7 @@ all:
         hugo.vinishor.xyz:
         gemini.home.arpa:
         vault.home.arpa:
+        dns.home.arpa:
     debian:
       hosts:
         zola.vinishor.xyz:
