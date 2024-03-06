@@ -55,21 +55,6 @@ scrape_configs:
          target_label: target
        - target_label: __address__
          replacement: 127.0.0.1:9115  # The blackbox exporter's real hostname:port.
-  - job_name: "blackbox-imap"
-    metrics_path: /probe
-    params:
-      module: [imap_check]
-    scrape_interval: 5s
-    static_configs:
-      - targets:
-          - mail.labolyon.fr:993
-    relabel_configs:
-       - source_labels: [__address__]
-         target_label: __param_target
-       - source_labels: [__param_target]
-         target_label: target
-       - target_label: __address__
-         replacement: 127.0.0.1:9115  # The blackbox exporter's real hostname:port.
   - job_name: "blackbox-smtp"
     metrics_path: /probe
     params:
@@ -78,6 +63,8 @@ scrape_configs:
     static_configs:
       - targets:
           - mail.labolyon.fr:25
+          - mail.automario.eu:25
+          - mx.vinishor.xyz:25
     relabel_configs:
        - source_labels: [__address__]
          target_label: __param_target
