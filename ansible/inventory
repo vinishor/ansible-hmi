@@ -10,8 +10,6 @@ all:
         dns.home.arpa:
     debian:
       hosts:
-        zola.vinishor.xyz:
-        tolstoi.vinishor.xyz:
         riscv.home.arpa:
         windows.home.arpa:
         altai.home.arpa:
@@ -21,12 +19,10 @@ all:
         mail.home.arpa:
         www.home.arpa:
         motion.home.arpa:
-        kube.home.arpa:
+        check.home.arpa:
     rhel:
       hosts:
         ansible.home.arpa:
-        eminescu.vinishor.xyz:
-        under.vinishor.xyz:
     alpine:
       hosts:
         unbound.home.arpa:
@@ -35,7 +31,7 @@ all:
     blackbox:
       hosts:
         soseki.vinishor.xyz:
-        zola.vinishor.xyz:
+        check.home.arpa:
     hypervisors:
       hosts:
         altai.home.arpa:
