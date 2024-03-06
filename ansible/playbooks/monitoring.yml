@@ -23,6 +23,7 @@
   become: yes
   roles:
     - prometheus
+    - blackbox-exporter
   vars:
     blackbox: true
     scrape_files:
