@@ -16,7 +16,6 @@
          - www.home.arpa:9100
          - data.home.arpa:9100
          - ansible.home.arpa:9100
-         - zola.home.arpa:9100
          - narodnaia.home.arpa:9100
          - nas.home.arpa:9100
          - emikoussi.home.arpa:9100
@@ -59,10 +58,19 @@
     static_configs:
       - targets:
          - www.home.arpa:9113
-         - zola.home.arpa:9113
 
   - job_name: "unbound-exporter"
     static_configs:
       - targets:
          - unbound.home.arpa:9167
     metrics_path: /metrics
+
+  - job_name: "hass-exporter"
+    static_configs:
+      - targets:
+         - 10.10.30.10:8123
+    metrics_path: /api/prometheus
+    scrape_interval: 60s
+    scheme: http
+    authorization:
+      credentials: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI5MTJjYzQ5ZGM3ZTA0YzBiOWRjMDk3OGJmNTFkZGUwNSIsImlhdCI6MTcwOTU1MTc0MSwiZXhwIjoyMDI0OTExNzQxfQ.L5TN5jHCRqexhEpHystNLZNxbMMHG2S1EGjaMb_s3dU"
