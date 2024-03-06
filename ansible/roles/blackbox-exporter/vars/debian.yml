@@ -1,0 +1,5 @@
+---
+# vars file for blackbox role
+blackbox_package: prometheus-blackbox-exporter
+blackbox_config: '/etc/prometheus/blackbox.yml'
+blackbox_service: prometheus-blackbox-exporter

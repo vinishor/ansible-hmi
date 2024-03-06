@@ -1,0 +1,5 @@
+## Restart Blackbox-exporter on changes
+- name: restart blackbox
+  ansible.builtin.service:
+    name: '{{ blackbox_service }}'
+    state: restarted

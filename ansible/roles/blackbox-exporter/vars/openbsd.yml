@@ -1,0 +1,5 @@
+---
+# vars file for blackbox role
+blackbox_package: blackbox_exporter
+blackbox_config: '/etc/blackbox_exporter/blackbox.yml'
+blackbox_service: blackbox_exporter

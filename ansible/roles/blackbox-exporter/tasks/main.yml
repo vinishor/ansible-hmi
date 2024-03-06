@@ -1,0 +1,25 @@
+---
+
+- name: Load variables
+  include_vars: "{{ ansible_os_family|lower }}.yml"
+
+- name: Install Blackbox exporter
+  tags: blackbox-install
+  ansible.builtin.package:
+    name: '{{ blackbox_package }}'
+    state: latest
+
+- name: Define Blackbox configuration
+  tags: blackbox-configure
+  ansible.builtin.template:
+    src: blackbox.config.j2
+    dest: '{{ blackbox_config }}'
+    backup: yes
+  notify: restart blackbox
+
+- name: Enable Blackbox service
+  tags: blackbox-enable
+  ansible.builtin.service:
+    name: '{{ blackbox_service }}'
+    state: started
+    enabled: yes
