@@ -7,7 +7,7 @@ modules:
     http:
       preferred_ip_protocol: "ip4"
       ip_protocol_fallback: true
-{% end %}
+{% endif %}
   http_post_2xx:
     prober: http
 {% if inventory_hostname == 'check.home.arpa' %}
@@ -15,7 +15,7 @@ modules:
       method: POST
       preferred_ip_protocol: "ip4"
       ip_protocol_fallback: true
-{% end %}
+{% endif %}
   tcp_connect:
     prober: tcp
   smtp_check:
@@ -25,7 +25,7 @@ modules:
 {% if inventory_hostname == 'check.home.arpa' %}
       preferred_ip_protocol: "ip4"
       ip_protocol_fallback: true
-{% end %}
+{% endif %}
       query_response:
         - expect: "^220 ([^ ]+) ESMTP (.+)$"
         - send: "EHLO prober\r"
@@ -43,7 +43,7 @@ modules:
 {% if inventory_hostname == 'check.home.arpa' %}
       preferred_ip_protocol: "ip4"
       ip_protocol_fallback: true
-{% end %}
+{% endif %}
       query_response:
         - expect: "OK.*STARTTLS"
         - send: ". STARTTLS"
@@ -57,4 +57,4 @@ modules:
     icmp:
       preferred_ip_protocol: "ip4"
       ip_protocol_fallback: true
-{% end %}
+{% endif %}
