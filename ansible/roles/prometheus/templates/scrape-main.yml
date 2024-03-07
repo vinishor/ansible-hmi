@@ -1,6 +1,7 @@
   - job_name: "openbsd-nodes"
     static_configs:
       - targets:
+        - dns.home.arpa:9100
         - soseki.home.arpa:9100
         - hugo.home.arpa:9100
         - eliade.home.arpa:9100
