@@ -1,0 +1,4 @@
+## Reload firewall on changes
+- name: reload pf
+  ansible.builtin.command:
+    name: 'pfctl -f /etc/pf.conf'

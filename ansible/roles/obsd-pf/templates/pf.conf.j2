@@ -1,0 +1,79 @@
+{{ ansible_managed | comment }}
+## IPF (Improved-PF) configuration file
+## Author : vinishor
+
+## Set default options
+set block-policy return
+set fingerprints "/etc/pf.os"
+set limit { table-entries 500000 }
+set loginterface egress
+set optimization normal
+set reassemble yes
+set ruleset-optimization profile
+set skip on lo
+set state-policy if-bound
+set timeout { tcp.established 600, tcp.closing 60 }
+## Tables
+table <bruteforce> persist
+table <whites> const { 82.65.142.124 46.23.94.78 89.234.141.148 45.13.106.29 2a03:6000:6f67:603::78 2a00:5881:8110:1e00::2 2a0e:e701:1248::1 }
+
+## Default rules (block everything, then allow traffic to outside)
+block log
+pass out
+
+## Allow traffic from VPN
+pass in quick log on wg0 from any to (self)
+pass out on egress inet from (wg0:network) nat-to (vio0:0)
+
+## Block urpf-failed packets
+block in log quick from urpf-failed
+
+## Block bad ips inside dedicated table
+block quick from <bruteforce>
+
+## Antispoofing
+antispoof for egress
+antispoof for lo0
+
+## Matches
+match log all scrub (max-mss 1440 min-ttl 64 no-df random-id reassemble tcp)
+
+## Manage ICMP
+pass in inet6 proto ipv6-icmp all max-pkt-rate 100/10
+pass in inet proto icmp all max-pkt-rate 100/10
+
+## By default, do not permit remote connections to X11
+block return in on ! lo0 proto tcp to port 6000:6010
+## Port build user does not need network
+block return out log proto {tcp udp} user _pbuild
+## Prevent leak dns
+block in log on egress proto { tcp udp } from any to ! egress port 53 label "DNS-try-leak"
+
+## Allow whitelist
+pass in quick log on egress proto tcp from <whites> to (self) modulate state
+pass in quick log on egress proto udp from <whites> to (self) modulate state
+
+## Allow SSH
+pass in quick log on egress proto tcp from any to (self) port 22 modulate state (max-src-conn-rate 10/5, overload <bruteforce> flush global)
+## Allow Wireguard traffic
+pass in quick log on egress proto udp from any to (self) port 60001
+
+## Allow DNS service
+pass in quick on egress proto { tcp udp } from any to (self) port 53 modulate state
+
+## Allow IMAP service
+pass in quick log on egress proto tcp from any to (self) port { 143 993 } modulate state
+## Allow SMTP service
+pass in quick log on egress proto tcp from any to (self) port { 25 587 } modulate state (max-src-conn-rate 10/5, overload <bruteforce> flush global)
+
+## Allow HTTP/HTTPS service
+pass in quick on egress proto tcp from any to (self) port { 80 443 } modulate state
+
+## Allow Gopher service
+pass in quick log on egress proto tcp from any to (self) port 70 modulate state
+
+## Allow Gemini service
+pass in quick log on egress proto tcp from any to (self) port 1965 modulate state
+
+## Allow XMPP service
+pass in quick log on egress proto tcp from any to (self) port { 5000 5222 5223 5269 5270 5280 5298 5347 } modulate state
