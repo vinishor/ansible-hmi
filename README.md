@@ -12,6 +12,9 @@ La collection **community-general** est utilisée pour le bon fonctionnement du 
 Pour utiliser ce dépôt, reportez-vous aux playbooks correspondants :
 
  * *setup.yml* pour configurer un serveur pour la première fois
+ * *nas.yml* pour configurer le serveur NAS
+ * *monitoring.yml* pour configurer et mettre en place le système de monitoring
+ * *localdns.yml* pour mettre à jour la configuration du resolveur DNS local
 
 ---
 
