@@ -3,6 +3,13 @@
 - name: Load package and service names
   include_vars: "{{ ansible_os_family|lower }}.yml"
 
+- name: RH - Add Grafana repo
+  ansible.builtin.template:
+   src: rh-repo
+   dest: /etc/yum.repos.d/grafana.repo
+  when: ansible_os_family == 'RedHat'
+  tags: rh-promtail-repo
+
 - name: Debian - Add Grafana GPG key
   tags: debian-promtail-key
   when: ansible_os_family == 'Debian'
