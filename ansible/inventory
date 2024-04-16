@@ -16,13 +16,13 @@ all:
         emikoussi.home.arpa:
         nas.home.arpa:
         narodnaia.home.arpa:
-        mail.home.arpa:
         www.home.arpa:
         motion.home.arpa:
         check.home.arpa:
     rhel:
       hosts:
         ansible.home.arpa:
+        mail.home.arpa:
     alpine:
       hosts:
         unbound.home.arpa:
