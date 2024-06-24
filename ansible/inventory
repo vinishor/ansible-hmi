@@ -10,7 +10,6 @@ all:
         dns.home.arpa:
     debian:
       hosts:
-        riscv.home.arpa:
         windows.home.arpa:
         altai.home.arpa:
         emikoussi.home.arpa:
@@ -19,6 +18,9 @@ all:
         www.home.arpa:
         motion.home.arpa:
         check.home.arpa:
+        minibrique.home.arpa:
+        forgejo.home.arpa:
+        docker.home.arpa:
     rhel:
       hosts:
         ansible.home.arpa:
@@ -32,6 +34,7 @@ all:
       hosts:
         soseki.vinishor.xyz:
         check.home.arpa:
+        minibrique.home.arpa:
     hypervisors:
       hosts:
         altai.home.arpa:
