@@ -69,7 +69,7 @@ scrape_configs:
       - targets:
          - palatul.home.arpa:9100
          - unbound.home.arpa:9100
-         - gitea.home.arpa:9100
+         - forgejo.home.arpa:9100
          - www.home.arpa:9100
          - data.home.arpa:9100
          - ansible.home.arpa:9100
@@ -93,23 +93,6 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: localhost:9116  # The SNMP exporter's real hostname:port.
-
-  - job_name: "pve-exporter"
-    static_configs:
-      - targets:
-         - narodnaia.home.arpa
-         - emikoussi.home.arpa
-         - altai.home.arpa
-    metrics_path: /pve
-    params:
-      module: [default]
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - target_label: __address__
-        replacement: 127.0.0.1:9221  # PVE exporter.
 
   - job_name: "nginx-exporter"
     static_configs:

@@ -8,6 +8,7 @@ all:
         gemini.home.arpa:
         vault.home.arpa:
         dns.home.arpa:
+        dn42-tas.home.arpa:
     debian:
       hosts:
         windows.home.arpa:
