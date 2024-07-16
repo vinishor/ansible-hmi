@@ -27,7 +27,7 @@ modules:
       ip_protocol_fallback: true
 {% endif %}
       query_response:
-        - expect: "^220 ([^ ]+) ESMTP (.+)$"
+        - expect: "^220(.*)ESMTP(.*)$"
         - send: "EHLO prober\r"
         - expect: "^250-STARTTLS"
         - send: "STARTTLS\r"
