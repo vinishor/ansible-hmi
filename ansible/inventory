@@ -11,6 +11,7 @@ all:
         dn42-tas.home.arpa:
         dn42-central.home.arpa:
         dn42-www.home.arpa:
+        dn42-osk.home.arpa:
     debian:
       hosts:
         windows.home.arpa:
