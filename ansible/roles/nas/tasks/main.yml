@@ -28,6 +28,13 @@
    dest: /etc/exports
   notify: reload shares
 
+- name: SMB - Create folder for sharing pictures
+  ansible.builtin.file:
+    path: /share/samba-pictures
+    owner: root
+    state: directory
+    mode: 0775
+
 - name: SMB - Enable samba service
   tags: smb-enable
   ansible.builtin.service:
