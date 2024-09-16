@@ -66,6 +66,12 @@
          - unbound.home.arpa:9167
     metrics_path: /metrics
 
+  - job_name: "obgpd-exporter"
+    static_configs:
+      - targets:
+         - dn42-tas.home.arpa:9179
+    metrics_path: /metrics
+
   - job_name: "hass-exporter"
     static_configs:
       - targets:
