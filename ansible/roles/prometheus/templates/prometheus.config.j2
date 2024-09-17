@@ -122,10 +122,11 @@ scrape_configs:
     metrics_path: /metrics
 
   - job_name: "obgpd-exporter"
+    scheme: https
     static_configs:
       - targets:
-         - lg-dn42.vinishor.xyz:443
-         - lg2-dn42.vinishor.xyz:443
+         - lg-dn42.vinishor.xyz
+         - lg2-dn42.vinishor.xyz
     metrics_path: /bgplgd/metrics
 
   - job_name: "hass-exporter"
