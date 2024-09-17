@@ -124,9 +124,9 @@ scrape_configs:
   - job_name: "obgpd-exporter"
     static_configs:
       - targets:
-         - dn42-tas.home.arpa:9179
-         - osk-dn42.vinishor.xyz:9179
-    metrics_path: /metrics
+         - lg-dn42.vinishor.xyz:443
+         - lg2-dn42.vinishor.xyz:443
+    metrics_path: /bgplgd/metrics
 
   - job_name: "hass-exporter"
     static_configs:
