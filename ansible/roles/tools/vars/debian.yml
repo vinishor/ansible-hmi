@@ -11,3 +11,4 @@ common_packages:
   - needrestart
   - lynis
   - apt-listbugs
+  - dnsutils
