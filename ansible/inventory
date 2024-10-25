@@ -25,6 +25,7 @@ all:
         minibrique.home.arpa:
         forgejo.home.arpa:
         docker.home.arpa:
+        passbolt.home.arpa:
     rhel:
       hosts:
         ansible.home.arpa:
