@@ -2,7 +2,7 @@
 # vars file for tools role
 common_packages:
   - htop
-  - neofetch
+  - screenfetch
   - curl
   - bash
   - figlet
