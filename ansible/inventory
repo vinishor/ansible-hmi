@@ -26,6 +26,7 @@ all:
         forgejo.home.arpa:
         docker.home.arpa:
         passbolt.home.arpa:
+        armmonit.home.arpa:
     rhel:
       hosts:
         ansible.home.arpa:
