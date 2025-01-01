@@ -7,6 +7,8 @@
         - eliade.home.arpa:9100
         - gemini.home.arpa:9100
         - vault.home.arpa:9100
+        - 10.10.30.12:9100
+        - 64.176.34.177:9100
 
   - job_name: "linux-nodes"
     static_configs:
@@ -38,23 +40,6 @@
       - target_label: __address__
         replacement: localhost:9116  # The SNMP exporter's real hostname:port.
 
-  - job_name: "pve-exporter"
-    static_configs:
-      - targets:
-         - narodnaia.home.arpa
-         - emikoussi.home.arpa
-         - altai.home.arpa
-    metrics_path: /pve
-    params:
-      module: [default]
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - target_label: __address__
-        replacement: 127.0.0.1:9221  # PVE exporter.
-
   - job_name: "nginx-exporter"
     static_configs:
       - targets:
@@ -65,6 +50,16 @@
       - targets:
          - unbound.home.arpa:9167
     metrics_path: /metrics
+
+  - job_name: ups
+    static_configs:
+      - targets: ['nas.home.arpa:9199'] # nut exporter
+    metrics_path: /ups_metrics
+
+  - job_name: ups2
+    static_configs:
+      - targets: ['pitondesneiges.home.arpa:9199'] # nut exporter
+    metrics_path: /ups_metrics
 
   - job_name: "obgpd-exporter"
     static_configs:

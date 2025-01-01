@@ -107,6 +107,16 @@ scrape_configs:
          - unbound.home.arpa:9167
     metrics_path: /metrics
 
+  - job_name: ups
+    static_configs:
+      - targets: ['nas.home.arpa:9199'] # nut exporter
+    metrics_path: /ups_metrics
+
+  - job_name: ups2
+    static_configs:
+      - targets: ['pitondesneiges.home.arpa:9199'] # nut exporter
+    metrics_path: /ups_metrics
+
   - job_name: "obgpd-exporter"
     scheme: https
     static_configs:
