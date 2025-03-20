@@ -12,6 +12,7 @@ all:
         dn42-central.home.arpa:
         dn42-www.home.arpa:
         dn42-osk.home.arpa:
+        snacs.home.arpa:
     debian:
       hosts:
         windows.home.arpa:
@@ -27,6 +28,7 @@ all:
         docker.home.arpa:
         passbolt.home.arpa:
         pitondesneiges.home.arpa:
+        nas-stella.home.arpa:
     rhel:
       hosts:
         ansible.home.arpa:
