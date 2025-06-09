@@ -13,6 +13,7 @@ all:
         dn42-www.home.arpa:
         dn42-osk.home.arpa:
         snacs.home.arpa:
+        mail.home.arpa:
     debian:
       hosts:
         windows.home.arpa:
@@ -25,8 +26,6 @@ all:
         check.home.arpa:
         minibrique.home.arpa:
         forgejo.home.arpa:
-        docker.home.arpa:
-        passbolt.home.arpa:
         pitondesneiges.home.arpa:
         nas-stella.home.arpa:
     rhel:
@@ -37,7 +36,6 @@ all:
         unbound.home.arpa:
         data.home.arpa:
         palatul.home.arpa:
-        mail.home.arpa:
     blackbox:
       hosts:
         soseki.vinishor.xyz:
