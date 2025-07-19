@@ -1,9 +1,21 @@
 ---
 # Playbook to set up the servers
 
-- name: Configure access and install work tools
-  hosts: all
+- name: Configure access and install work tools - Linux VMs
+  hosts:
+    - debian
+    - rhel
   become: yes
+  roles:
+    - ssh
+    - tools
+    - users
+
+- name: Configure access and install work tools - OpenBSD VMs
+  hosts:
+    - openbsd
+  become: yes
+  become_method: doas
   roles:
     - ssh
     - tools
