@@ -18,12 +18,10 @@ all:
       hosts:
         windows.home.arpa:
         altai.home.arpa:
-        emikoussi.home.arpa:
         nas.home.arpa:
         narodnaia.home.arpa:
         www.home.arpa:
         motion.home.arpa:
-        check.home.arpa:
         minibrique.home.arpa:
         forgejo.home.arpa:
         pitondesneiges.home.arpa:
@@ -38,14 +36,11 @@ all:
         palatul.home.arpa:
     blackbox:
       hosts:
-        soseki.vinishor.xyz:
-        check.home.arpa:
         minibrique.home.arpa:
     hypervisors:
       hosts:
         altai.home.arpa:
         narodnaia.home.arpa:
-        emikoussi.home.arpa:
     nas:
       hosts:
         nas.home.arpa:
