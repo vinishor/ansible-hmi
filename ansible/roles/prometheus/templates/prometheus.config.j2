@@ -42,10 +42,10 @@ scrape_configs:
           - https://automario.eu
           - https://mail.automario.eu
           - https://mail2.automario.eu
-          - https://unbon.cafe
-          - https://avoir.unbon.cafe
           - https://automaticsappo.ro
-          - https://kuma.am.gugod.fr
+          - https://unbon.cafe
+          - https://labolyon.fr
+          - https://sso.labolyon.fr
     relabel_configs:
        - source_labels: [__address__]
          target_label: __param_target
@@ -58,11 +58,13 @@ scrape_configs:
     static_configs:
       - targets:
         - dns.home.arpa:9100
+        - gemini.home.arpa:9100
+        - vault.home.arpa:9100
+        - snacs.home.arpa:9100
+        - mail.automario.eu:9100
         - soseki.home.arpa:9100
         - hugo.home.arpa:9100
         - eliade.home.arpa:9100
-        - gemini.home.arpa:9100
-        - vault.home.arpa:9100
         - 10.10.30.12:9100
         - 64.176.34.177:9100
 
@@ -74,10 +76,8 @@ scrape_configs:
          - forgejo.home.arpa:9100
          - www.home.arpa:9100
          - data.home.arpa:9100
-         - ansible.home.arpa:9100
          - narodnaia.home.arpa:9100
          - nas.home.arpa:9100
-         - emikoussi.home.arpa:9100
          - altai.home.arpa:9100
 
   - job_name: "mikrotik"

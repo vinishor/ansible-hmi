@@ -6,7 +6,6 @@
   become: yes
   roles:
     - grafana
-    - loki
 
 - name: Install and configure Prometheus node - Main node
   hosts: palatul.home.arpa
@@ -29,9 +28,18 @@
     scrape_files:
       - /etc/prometheus/scrape-blackbox.yml
 
-- name: Install and configure nodes
-  hosts: all
+- name: Install and configure nodes - Linux
+  hosts:
+    - debian
+    - rhel
   become: yes
   roles:
-    - promtail
+    - node-exporter
+
+- name: Install and configure nodes - OpenBSD
+  hosts:
+    - openbsd
+  become: yes
+  become_method: doas
+  roles:
     - node-exporter
