@@ -12,3 +12,4 @@ common_packages:
   - lynis
   - apt-listbugs
   - dnsutils
+  - duf

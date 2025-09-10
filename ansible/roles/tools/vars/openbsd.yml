@@ -10,3 +10,4 @@ common_packages:
   - vim--no_x11
   - checkrestart
   - lynis
+  - duf
