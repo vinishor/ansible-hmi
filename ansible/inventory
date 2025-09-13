@@ -14,6 +14,7 @@ all:
         dn42-osk.home.arpa:
         snacs.home.arpa:
         mail.home.arpa:
+        solaris.home.arpa:
     debian:
       hosts:
         windows.home.arpa:
