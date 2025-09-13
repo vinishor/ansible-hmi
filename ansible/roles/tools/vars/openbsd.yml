@@ -2,7 +2,7 @@
 # vars file for tools role
 common_packages:
   - htop
-  - screenfetch
+  - neofetch
   - curl
   - bash
   - figlet
@@ -10,4 +10,3 @@ common_packages:
   - vim--no_x11
   - checkrestart
   - lynis
-  - duf
