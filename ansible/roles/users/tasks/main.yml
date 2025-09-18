@@ -69,7 +69,9 @@
     group: root
     mode: 0640
     validate: /usr/sbin/visudo -cf %s
-  when: ansible_os_family != 'OpenBSD' or ansible_os_family != 'Solaris'
+  when: 
+    - ansible_os_family != 'OpenBSD'
+    - ansible_os_family != 'Solaris'
 
 - name: Linux | Correct sudoers file permissions for ansible user
   ansible.builtin.file:
@@ -77,7 +79,9 @@
     owner: root
     group: root
     mode: 0640
-  when: ansible_os_family != 'OpenBSD' or ansible_os_family != 'Solaris'
+  when: 
+    - ansible_os_family != 'OpenBSD'
+    - ansible_os_family != 'Solaris'
 
 - name: Openbsd | Configure doas
   ansible.builtin.template:
