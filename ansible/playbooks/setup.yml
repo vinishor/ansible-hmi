@@ -1,10 +1,11 @@
 ---
 # Playbook to set up the servers
 
-- name: Configure access and install work tools - Linux VMs
+- name: Configure access and install work tools - Linux/Solaris VMs
   hosts:
     - debian
     - rhel
+    - solaris
   become: yes
   roles:
     - ssh
