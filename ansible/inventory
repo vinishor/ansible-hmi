@@ -45,3 +45,4 @@ all:
     nas:
       hosts:
         nas.home.arpa:
+        hexafret.home.arpa:
