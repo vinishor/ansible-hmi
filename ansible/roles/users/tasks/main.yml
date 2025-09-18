@@ -93,7 +93,9 @@
 - name: Linux | Define MOTD file
   ansible.builtin.shell:
     cmd: figlet -t {{ inventory_hostname_short | quote }} > /etc/motd
-  when: ansible_os_family != 'OpenBSD' or ansible_os_family != 'Solaris'
+  when: 
+    - ansible_os_family != 'OpenBSD'
+    - ansible_os_family != 'Solaris'
 
 - name: OpenBSD | Define MOTD file
   ansible.builtin.shell:
