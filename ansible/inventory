@@ -15,6 +15,9 @@ all:
         snacs.home.arpa:
         mail.home.arpa:
         solaris.home.arpa:
+    solaris:
+      hosts:
+        hexafret.home.arpa:
     debian:
       hosts:
         windows.home.arpa:
