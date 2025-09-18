@@ -2,9 +2,8 @@
 # vars file for tools role
 common_packages:
   - htop
-  - screenfetch
   - curl
-  - bash
+  - git
   - figlet
   - vim
   - rsync
